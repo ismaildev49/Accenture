@@ -1,0 +1,18 @@
+.header {
+    height: 20vh;
+  .container {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo{
+        width: 175px;
+    }
+  }
+}
+.home-body{
+    background-image: url(../../../public/assets/hero-background.jpg);
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}

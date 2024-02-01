@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard"
+import './style.css';
 
 
 
@@ -12,9 +13,9 @@ function App() {
       {/* Page d'acceuil avec un Welcome, expliquer brièvement le but de l'application et un bouton login */}
         <Route path= "/" element={<Home/>}></Route>
 
-        <Route path= "/Login" element={<Login/>}></Route>
+        <Route path= "/login" element={<Login/>}></Route>
 
-        <Route path= "/Dashboard" element={<Dashboard/>}></Route>
+        <Route path= "/dashboard" element={<Dashboard/>}></Route>
         
       </Routes>
     </BrowserRouter>
