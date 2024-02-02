@@ -18,14 +18,14 @@ const emuler_user = [
   {
       id: 1,
       name: "Hugo Boss",
-      photo: "https://media.licdn.com/dms/image/D4E03AQF3H8eetH_n0w/profile-displaphotoshrink_800_800/0/1669641183201?e=1710374400&v=beta&t=BkQqtYMDeE3vjZqrURmgW7bri5hHUkaQ_7EPi_PSFbM",
+      photo: "https://media.licdn.com/dms/image/D4E03AQF3H8eetH_n0w/profile-displayphoto-shrink_800_800/0/1669641183201?e=1710374400&v=beta&t=BkQqtYMDeE3vjZqrURmgW7bri5hHUkaQ_7EPi_PSFbM",
       isAdmin: "false"
   },
   {
       id: 2,
       name: "Ismael Le Grand",
       photo: "",
-      isAdmin: "false"
+      isAdmin: "true"
   },
   {
       id: 3,
@@ -42,6 +42,7 @@ export default function Dashboard (){
   const [userAuth, setUserAuth] = useState();
 
   const idSession = 1
+
 
   function testDateJson(){
     emuler_user.map((user) => {

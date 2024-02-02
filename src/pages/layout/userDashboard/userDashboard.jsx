@@ -14,7 +14,7 @@ export default function UserDashboard() {
     const [isMenuOpen, setIsMenuOpen] = useState(true)
 
     // ROUTES-TEST start
-    const [showComposant, setShowComposant] = useState("accueil_user_admin");
+    const [showComposant, setShowComposant] = useState("calendrie");
     const [showPage, setShowPage] = useState();
     const route = [
         {path: "accueil_user_admin", composant: <AccueilPageUserAdmin />},
@@ -93,13 +93,15 @@ function Header(props){
     
     const infosUser = useContext(InfosUsers)
 
-    const [nom, setNom] = useState()
-    const [photo, setPhoto] = useState()
+    const [nom, setNom] = useState("")
+    const [photo, setPhoto] = useState("")
 
     useEffect(() => {
         console.log(infosUser);
-        // setNom(infosUser.name)
-        // setPhoto(infosUser.photo)
+        if(infosUser){
+            setNom(infosUser.name)
+            setPhoto(infosUser.photo)
+        }
     }, [infosUser])
 
     const handleClick = () => {
@@ -191,7 +193,7 @@ function Modal(params) {
 function Calendrie(){
 
     const handleClickCaseCalendrier = (infos) => {
-    alert(infos)
+        alert(infos)
     }
 
     return(
@@ -210,13 +212,15 @@ function Calendrie(){
             // locale='fr'
             selectable={true}
             dateClick = {function(info) {
-            // alert('Clicked on: ' + info.dateStr);
-            // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            // alert('Current view: ' + info.view.type);
-            // change the day's background color just for fun
-            info.dayEl.style.backgroundColor = 'green';
-            handleClickCaseCalendrier('Clicked on: ' + info.dateStr)
+                // alert('Clicked on: ' + info.dateStr);
+                // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                // alert('Current view: ' + info.view.type);
+                // change the day's background color just for fun
+                info.dayEl.style.backgroundColor = 'green';
+                handleClickCaseCalendrier('Clicked on: ' + info.dateStr)
             }}
+            
+            
         />
         </div>
     </div>

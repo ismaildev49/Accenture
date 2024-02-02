@@ -93,13 +93,15 @@ function Header(props){
     
     const infosUser = useContext(InfosUsers)
 
-    const [nom, setNom] = useState()
-    const [photo, setPhoto] = useState()
+    const [nom, setNom] = useState("")
+    const [photo, setPhoto] = useState("")
 
     useEffect(() => {
         console.log(infosUser);
-        // setNom(infosUser.name)
-        // setPhoto(infosUser.photo)
+        if(infosUser){
+            setNom(infosUser.name)
+            setPhoto(infosUser.photo)
+        }
     }, [infosUser])
 
     const handleClick = () => {
