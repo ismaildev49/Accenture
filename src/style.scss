@@ -1,4 +1,19 @@
-@import 'sass/general';
+@import 'sass/imports';
+@import 'sass/variables';
+@import 'sass/mixin';
+@import 'sass/init';
+@import 'sass/global';
+
+
+// not dashboard
 @import 'components/header/header';
 @import 'components/home/hero/homehero.scss';
 @import 'components/loginPage/LoginForm';
+
+
+// DASHBOARD/
+@import 'pages/dashboard/header';
+@import 'pages/dashboard/sidebar';
+// Admin
+@import 'pages/layout/AdminDashboard/sass/accueilAdmin';
+// User

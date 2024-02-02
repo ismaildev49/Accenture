@@ -1,0 +1,93 @@
+header{
+    // border: solid 3px red;
+    // display: flex;
+    // width: 100%;
+    
+    .header_content{
+        // border: solid 3px red;
+        display: flex;
+        align-items: center;
+        height: 80px;
+        padding: 0 20px;
+        
+        .burger{
+            // border: solid 3px red;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px 6px;
+            // margin-right: 10px;
+            background-color: $_bg_color_1;
+            box-shadow: 0 0 2px rgb(0, 0, 0, 0.4);
+            border: none;
+
+            @include _lg{
+                display: none;
+            }
+
+            span{
+                // border: solid 3px green;
+                border-radius: 20px;
+                height: 3px;
+                width: 25px;
+                background-color: $_bg_color_3;
+                // margin: 2px 0;
+            }
+
+            span.middle{
+                height: 2.4px;
+                opacity: 0.5;
+            }
+        }
+
+        .header_content_profil{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            padding-right: 15px;
+
+            .infos{
+                // border: solid 3px red;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                margin-left: 10px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: $_text_color_3;
+                padding-right: 15px;
+
+                .nom{
+                    // border: solid 3px red;
+                    font-size: 1rem;
+                    font-weight: 700;
+                    color: $_text_color_3;
+                    opacity: 0.8;
+                    text-align: right;
+                }
+
+                .role{
+                    // border: solid 3px red;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    color: $_text_color_3;
+                    opacity: 0.5;
+                    text-align: right;
+                }
+            }
+
+            .photo_profil{
+                // border: solid 3px red;
+
+                img{
+                    // border: solid 3px red;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}

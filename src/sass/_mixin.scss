@@ -1,0 +1,164 @@
+/*
+sm: 640px
+md: 768px
+lg: 1024px
+xl: 1280px
+2xl: 1536px
+*/
+
+
+
+// SCREENS
+$_sm: 640px;
+$_md: 768px;
+$_lg: 1024px;
+$_xl: 1280px;
+$_2xl: 1536px;
+
+@mixin _sm($mediaMin: $_sm){
+    @media screen and (min-width: $mediaMin) {
+        @content;
+    }
+}
+@mixin _md($mediaMin: $_md){
+    @media screen and (min-width: $mediaMin) {
+        @content;
+    }
+}
+@mixin _lg($mediaMin: $_lg){
+    @media screen and (min-width: $mediaMin) {
+        @content;
+    }
+}
+@mixin _xl($media: $_xl){
+    @media screen and (min-width: $media) {
+        @content;
+    }
+}
+@mixin _2xl($mediaMin: $_2xl){
+    @media screen and (min-width: $mediaMin) {
+        @content;
+    }
+}
+
+
+
+// $ipad: 768px;
+// $ipadPro: 1024px;
+// $laptop13: 1280px;
+// $laptop: 1440px;
+// $pc: 1920px;
+// $bigPc: 2560px;
+// @mixin ipad() {
+//     @media screen and (min-width: $ipad) {
+//         @content;
+//     }
+// }
+// @mixin ipadPro() {
+//     @media screen and (min-width: $ipadPro) {
+//         @content;
+//     }
+// }
+// @mixin laptop13() {
+//     @media screen and (min-width: $laptop13) {
+//         @content;
+//     }
+// }
+// @mixin laptop() {
+//     @media screen and (min-width: $laptop) {
+//         @content;
+//     }
+// }
+// @mixin pc() {
+//     @media screen and (min-width: $pc) {
+//         @content;
+//     }
+// }
+// @mixin bigPc() {
+//     @media screen and (min-width: $bigPc) {
+//         @content;
+//     }
+// }
+
+
+// GRID
+@mixin container($max-width: 1110px) {
+    display: grid;
+    grid-template-columns:
+    minmax(5vw, 1fr) repeat(12, minmax(11px, calc($max-width / 12)))
+    minmax(5vw, 1fr);
+}
+
+
+// FLEX
+@mixin Dfx_JCc_AIc{
+    display: flex;
+        justify-content: center;
+        align-items: center;
+}
+@mixin Dfx_JCsb_AIc{
+    display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+@mixin Dfx_JCsa_AIc{
+    display: flex;
+        justify-content: space-around;
+        align-items: center;
+}
+@mixin Dfx_JCfs_AIc{
+    display: flex;
+        justify-content: flex-start;
+        align-items: center;
+}
+@mixin Dfx_JCfe_AIc{
+    display: flex;
+        justify-content: flex-end;
+        align-items: center;
+}
+@mixin Dfx_JCc_AIfs{
+    display: flex;
+        justify-content: center;
+        align-items: flex-start;
+}
+@mixin Dfx_JCc_AIfe{
+    display: flex;
+        justify-content: center;
+        align-items: flex-end;
+}
+
+// TEST
+@mixin borderTest($color){
+    border: solid 3px $color;
+}
+
+@mixin blur{
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+// animation line links
+// @mixin LineAnimed{
+//     &::before{
+//         content: "";
+//         position: absolute;
+//         top: 50%;
+//         height: 2px;
+//         width: 0;
+//         background-color: red;
+//     }
+//     &:hover::before{
+//         animation-name: li_line;
+//         animation-duration: 700ms;
+//     }
+//     @keyframes li_line {
+//         0%{
+//             opacity: 0;
+//             width: 0;
+//         }
+//         100%{
+//             opacity: 1;
+//             width: 100%;
+//         }
+//     }
+// }

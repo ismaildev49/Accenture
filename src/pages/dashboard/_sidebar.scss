@@ -1,0 +1,102 @@
+aside{
+    // border: solid 1px red;
+    position: fixed;
+        top: 0;
+        z-index: 100;
+    height: 100vh;
+    width: 280px;
+    background-color: $_bg_color_1;
+
+    @include _lg{
+        background-color: $_bg_color_1;
+        position: inherit;
+        width: 350px;
+    }
+
+    .btn_off_slideBar{
+        position: absolute;
+            top: 20px;
+            right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        opacity: 0.6;
+
+        @include _lg{
+            display: none;
+        }
+    }
+
+    .slideBar{
+        display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+
+        .logo{
+            align-self: flex-start;
+            padding: 15px 30px;
+
+            img{
+                // border: solid 1px red;
+                margin: 0 auto;
+                width: 150px;
+            }
+        }
+    
+        nav{
+            // border: solid 1px red;
+            width: 100%;
+            margin-top: 10px;
+            padding: 15px 25px;
+            ul{
+                // border: solid 1px red;
+                width: 100%;
+
+                h3{
+                    padding: 0 0 15px 10px;
+                }
+
+                li{
+                    // border: solid 1px green;
+                    width: 100%;
+                    padding: 5px 0;
+                    // text-align: center;
+                    @include Dfx_JCc_AIc;
+
+                    a{
+                        // border: solid 1px blue;
+                        width: 100%;
+                        padding: 5px 0 5px 10px;
+                        // text-align: center;
+                        font-size: 18px;
+                        font-weight: 400;
+                        // letter-spacing: 0.5px;
+                        color: $_text_color_3;
+                        transition: 300ms;
+                        &:hover{
+                            background-color: $_bg_color_2;
+                            // color: $_text_color_2;
+                            color: $_text_color_3_opos;
+                        }
+
+                        i{
+                            // border: solid 1px green;
+                            width: 30px;
+                        }
+                    }
+                }
+            }
+        
+        }
+    }
+}
+
+
+.aside_on{
+    left: 0;
+    transition: 500ms;
+}
+.aside_off{
+    left: -500px;
+    transition: 500ms;
+}

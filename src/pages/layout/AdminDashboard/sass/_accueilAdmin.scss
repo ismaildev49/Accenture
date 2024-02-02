@@ -1,0 +1,94 @@
+.accueilAdmin{
+    // border: solid 1px red;
+    // padding: 18px 30px;
+
+    .search{
+        // border: solid 1px green;
+        background-color: $_bg_color_1;
+        width: 100%;
+        // height: 50px;
+        margin: 0 0 2px 0;
+        padding: 18px 30px;
+        display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: row;
+
+        input{
+            // border: solid 1px blue;
+            // width: 100%;
+            height: 100%;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: $_text_color_3;
+            transition: 300ms;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+
+    table{
+        // border: solid 1px red;
+        width: 100%;
+
+        th,td{
+            width: 100%;
+            // border: solid 1px red;
+            background-color: $_bg_color_1;
+            text-align: left;
+            padding: 20px 10px 20px 32px;
+        }
+
+        thead{
+            // border: solid 1px red;
+            width: 100%;
+            // height: 50px;
+            color: $_text_color_3;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: 300ms;
+
+            tr{
+                // border: solid 1px green;
+                margin: 0 0 2px 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                    justify-content: start;
+                    // align-items: center;
+                    flex-direction: row;
+            }
+        }
+
+        tbody{
+            // border: solid 1px red;
+            width: 100%;
+            // height: 50px;
+            // background-color: $_bg_color_2;
+            // color: $_text_color_3;
+            // font-size: 18px;
+            // font-weight: 400;
+            // letter-spacing: 0.5px;
+            // transition: 300ms;
+
+            tr{
+                // border: solid 1px green;
+                width: 100%;
+                // height: 100%;
+                display: flex;
+                    justify-content: start;
+                    // align-items: center;
+                    flex-direction: row;
+
+                &:hover{
+                    background-color: $_bg_color_2;
+                    color: $_text_color_3_opos;
+                }
+            }
+        }
+    }
+}

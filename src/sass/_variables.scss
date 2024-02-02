@@ -1,0 +1,36 @@
+$color_1: white;
+$color_2: #f1f5f9;
+$color_3: rgb(27, 27, 27);
+$color_3_opos: rgb(0, 0, 0, 0.6);
+$color_4: #bd00ff;
+
+$_bg_color_1: $color_1;
+$_bg_color_2: $color_2;
+$_bg_color_3: $color_3;
+$_bg_color_4: $color_4;
+
+$_text_color_1: $color_1;
+$_text_color_2: $color_2;
+$_text_color_3_opos: $color_3_opos;
+$_text_color_3: $color_3;
+$_text_color_4: $color_4;
+
+.bg_color_1{
+    background-color: $_bg_color_1;
+    color: $_text_color_3;
+}
+
+.bg_color_2{
+    background-color: $_bg_color_2;
+    color: $_text_color_3;
+}
+
+.bg_color_3{
+    background-color: $_bg_color_3;
+    color: $_text_color_2;
+}
+
+.bg_color_4{
+    background-color: $_bg_color_4;
+    color: $_text_color_1;
+}
