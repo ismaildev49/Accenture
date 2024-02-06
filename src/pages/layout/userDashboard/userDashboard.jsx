@@ -27,10 +27,9 @@ export default function UserDashboard() {
     useEffect(() => {
         if (window.location.hash) {
             route.find(e => 
-                e.path === window.location.hash.split('/')[1] ? 
+                e.path === window.location.hash.split('/')[1]) ? 
                 setShowComposant(window.location.hash.split('/')[1]) : 
                 setShowComposant("calendrier")
-            )
         }else{}
     })
     useEffect(() => {
