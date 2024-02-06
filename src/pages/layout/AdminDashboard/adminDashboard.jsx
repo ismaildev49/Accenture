@@ -130,7 +130,7 @@ function Header(props){
     useEffect(() => {
         if(infosUser){
             setNom(infosUser.firstName + " " + infosUser.lastName)
-            setPhoto(infosUser.picture_user)
+            setPhoto(infosUser.profile_picture)
         }
     }, [infosUser])
 

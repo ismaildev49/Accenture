@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { account, documentsUsers } from "../../appwrite/config";
+import { account, database } from "../../appwrite/config";
 
 
 // COMPONENTS
@@ -11,34 +11,6 @@ import { Query } from "appwrite";
 // infos user
 export const InfosUsers = createContext();
 export const InfosUsersSession = createContext();
-
-// const emuler_user = [
-//   {
-//       id: 0,
-//       name: "Angelina Jolie",
-//       photo: "https://i.pinimg.com/originals/96/fa/f6/96faf68b951fd2d852deba3baa225d12.gif",
-//       isAdmin: "true"
-//   },
-//   {
-//       id: 1,
-//       name: "Hugo Boss",
-//       photo: "https://media.licdn.com/dms/image/D4E03AQF3H8eetH_n0w/profile-displayphoto-shrink_800_800/0/1669641183201?e=1710374400&v=beta&t=BkQqtYMDeE3vjZqrURmgW7bri5hHUkaQ_7EPi_PSFbM",
-//       isAdmin: "false"
-//   },
-//   {
-//       id: 2,
-//       name: "Ismael Le Grand",
-//       photo: "",
-//       isAdmin: "true"
-//   },
-//   {
-//       id: 3,
-//       name: "John Lennon",
-//       photo: "",
-//       isAdmin: "false"
-//   }
-// ]
-
 
 
 export default function Dashboard (){
@@ -55,9 +27,9 @@ export default function Dashboard (){
       console.log("user logged in");
       if (loggedIn) {
         try {
-          const user = await documentsUsers.listDocuments(
-            "65bf56612bded57e2cca",
-            "65bf567ec2c1c5833968",
+          const user = await database.listDocuments(
+            import.meta.env.VITE_APP_DB_ID,
+            import.meta.env.VITE_APP_USER_COLLECTION_ID,
             [
               Query.equal("user_id", loggedIn.$id)
             ]
@@ -65,7 +37,7 @@ export default function Dashboard (){
 
           setUserAuth(user.documents[0])
 
-          if (user.documents[0].isAdmin === "true") {
+          if (user.documents[0].isAdmin === true) {
             setShowPage(
               <InfosUsersSession.Provider value={userAuth} >
                 <AdminDashboard />
@@ -78,8 +50,10 @@ export default function Dashboard (){
               </InfosUsersSession.Provider>
             )
           }
-        } catch (error) {}
-      }
+        } catch (error) {
+          console.log("error: user not found");  
+          console.log(error)}
+      }else{}
 
     } catch (err) {
       setUserAuth(null);
