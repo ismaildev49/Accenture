@@ -24,7 +24,7 @@ const LoginForm = () => {
  const login = async () => {
   try {
     var x = await account.createEmailSession(email, password)
-    navigate('/Dashboard')
+    navigate('/dashboard/')
   } catch (error) {
     alert("Wrong email or password")
   }

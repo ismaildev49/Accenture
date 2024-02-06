@@ -42,6 +42,7 @@ xl: 1280px
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 li {
@@ -357,6 +358,9 @@ header .header_content .header_content_profil .infos {
   color: rgb(27, 27, 27);
   padding-right: 15px;
 }
+header .header_content .header_content_profil .infos span {
+  text-transform: capitalize;
+}
 header .header_content .header_content_profil .infos .nom {
   font-size: 1rem;
   font-weight: 700;
@@ -370,6 +374,9 @@ header .header_content .header_content_profil .infos .role {
   color: rgb(27, 27, 27);
   opacity: 0.5;
   text-align: right;
+}
+header .header_content .header_content_profil .photo_profil {
+  cursor: pointer;
 }
 header .header_content .header_content_profil .photo_profil img {
   height: 50px;
@@ -408,10 +415,12 @@ aside .btn_off_slideBar {
   }
 }
 aside .slideBar {
+  height: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
+  position: relative;
 }
 aside .slideBar .logo {
   align-self: flex-start;
@@ -453,6 +462,24 @@ aside .slideBar nav ul li a:hover {
 }
 aside .slideBar nav ul li a i {
   width: 30px;
+}
+aside .slideBar .btn_logout {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  padding: 0 25px;
+  display: flex;
+}
+aside .slideBar .btn_logout a {
+  padding: 5px 0 5px 10px;
+  width: 100%;
+}
+aside .slideBar .btn_logout a i {
+  width: 30px;
+}
+aside .slideBar .btn_logout a:hover {
+  background-color: #f1f5f9;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .aside_on {
@@ -524,4 +551,33 @@ aside .slideBar nav ul li a i {
 .accueilAdmin table tbody tr:hover {
   background-color: #f1f5f9;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.calendrier {
+  position: relative;
+}
+
+.modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+}
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+}
+.modal form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
 }/*# sourceMappingURL=style.css.map */

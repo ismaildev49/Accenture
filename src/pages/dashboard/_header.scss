@@ -58,6 +58,10 @@ header{
                 color: $_text_color_3;
                 padding-right: 15px;
 
+                span{
+                    text-transform: capitalize;
+                }
+
                 .nom{
                     // border: solid 3px red;
                     font-size: 1rem;
@@ -78,7 +82,8 @@ header{
             }
 
             .photo_profil{
-                // border: solid 3px red;
+                // border: solid 2px red;
+                cursor: pointer;
 
                 img{
                     // border: solid 3px red;
