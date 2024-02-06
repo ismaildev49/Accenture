@@ -1,0 +1,28 @@
+.calendrier{
+    position: relative;
+}
+
+.modal{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 300px;
+        input{
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+    }
+}
