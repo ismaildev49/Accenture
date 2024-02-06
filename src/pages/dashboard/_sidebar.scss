@@ -27,10 +27,13 @@ aside{
     }
 
     .slideBar{
+        // border: solid 1px green;
+        height: 100%;
         display: flex;
             justify-content: start;
             align-items: center;
             flex-direction: column;
+        position: relative;
 
         .logo{
             align-self: flex-start;
@@ -87,6 +90,28 @@ aside{
                 }
             }
         
+        }
+
+        .btn_logout{
+            // border: solid 1px blue;
+            position: absolute;
+                bottom: 20px;
+            width: 100%;
+            padding: 0 25px;
+            display: flex;
+
+            a{
+                // border: solid 1px green;
+                padding: 5px 0 5px 10px;
+                width: 100%;
+
+                i{width: 30px;}
+
+                &:hover{
+                    background-color: $_bg_color_2;
+                    color: $_text_color_3_opos;
+                }
+            }
         }
     }
 }
