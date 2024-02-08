@@ -453,7 +453,11 @@ function Calendrie() {
               user: infosUser.$id,
               eligible: distance < 10 ? true : false,
             }
-          );
+          ).then((response) => {
+            console.log("response :", response);
+            alert("Data sent");
+            window.location.reload();
+          })
         } catch (error) {
           
         

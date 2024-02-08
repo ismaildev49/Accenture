@@ -213,6 +213,7 @@ function Users(){
             if (recherche !== "") {
             }else{
                 setShowUserList(userList.map((user, index) => {
+
                     return <tr key={index} onClick={()=>modalUser(user.$id)}>
                             <td>{user.firstName}</td>
                             <td>{user.lastName}</td>
@@ -232,6 +233,7 @@ function Users(){
         newUsersList = newUsersList.filter(user => user.firstName.toLowerCase().includes(value) || user.lastName.toLowerCase().includes(value))
         console.log(newUsersList);
         setShowUserList(newUsersList.map((user, index) => {
+
             return <tr key={index} onClick={()=> modalUser(user.$id)}>
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
@@ -511,6 +513,8 @@ function ModalAdresse(props) {
                         }
                     ).then((response) => {
                         console.log(response);
+                        alert("document created");
+                        window.location.reload();
                         }
                     ).catch((error) => {
                         console.error("document no created " + error);
