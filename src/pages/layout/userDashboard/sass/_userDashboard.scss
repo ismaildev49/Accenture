@@ -1,29 +1,44 @@
-.calendrier{
+.calendrier {
     position: relative;
-    
-}
-
-.modal{
+    .eligible{
+    font-size: 20px;
+    font-weight: 900;
+    }
+    .modal {
     display: none;
     justify-content: center;
-    align-items: center;
-    background-color: black;
-    opacity: 0.5;
+    /* align-items: center; */
+    background-color: $_bg_color_2;
+
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     z-index: 100;
-    form{
+    .fa-xmark{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    form {
         display: flex;
         flex-direction: column;
-        gap: 20px;
         width: 300px;
-        input{
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
+        background-color: white;
+        padding: 20px;
+        border-radius: 20px;
+        height: fit-content;
+        input {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
         }
+        .adressError, .workedError {
+        color: red;
+        font-size: 14px;
+        }
+    }
     }
 }

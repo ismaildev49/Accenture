@@ -23,10 +23,14 @@ body{
         height: 100%;
         padding: 20px;
         overflow: auto;
+        position: relative;
 
-        .main_content{
-            // background-color: $_bg_color_1;
+        h2{
+            text-transform: capitalize;
         }
+        // .main_content{
+        //     min-height: 100%;
+        // }
     }
 
     #content{

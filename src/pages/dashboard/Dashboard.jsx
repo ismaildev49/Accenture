@@ -9,7 +9,7 @@ import UserDashboard from "../layout/userDashboard/userDashboard";
 import { Query } from "appwrite";
 
 // infos user
-export const InfosUsers = createContext();
+// export const InfosUsers = createContext();
 export const InfosUsersSession = createContext();
 
 
@@ -18,8 +18,6 @@ export default function Dashboard (){
 
   const [userAuth, setUserAuth] = useState(null);
   const [showPage, setShowPage] = useState();
-
-
 
   async function init() {
     try {
@@ -34,25 +32,26 @@ export default function Dashboard (){
               Query.equal("user_id", loggedIn.$id)
             ]
           )
-
+          
           setUserAuth(user.documents[0])
 
           if (user.documents[0].isAdmin === true) {
             setShowPage(
-              <InfosUsersSession.Provider value={userAuth} >
+              <InfosUsersSession.Provider value={user.documents[0]} >
                 <AdminDashboard />
               </InfosUsersSession.Provider>
             )
           } else{
             setShowPage(
-              <InfosUsersSession.Provider value={userAuth}>
+              <InfosUsersSession.Provider value={user.documents[0]}>
                 <UserDashboard />
               </InfosUsersSession.Provider>
             )
           }
         } catch (error) {
           console.log("error: user not found");  
-          console.log(error)}
+          console.log(error)
+        }
       }else{}
 
     } catch (err) {
@@ -60,12 +59,13 @@ export default function Dashboard (){
       console.log("error: user not logged in");
       navigate('/login')
     }
+    
   }
+  // init()
 
-  
   useEffect(() => {
-    init();
-  })
+    init()
+  }, [])
   
 
   return (

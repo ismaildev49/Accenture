@@ -55,18 +55,19 @@ header{
                 margin-left: 10px;
                 font-size: 0.8rem;
                 font-weight: 600;
-                color: $_text_color_3;
+                // color: $_text_color_3;
                 padding-right: 15px;
 
                 span{
                     text-transform: capitalize;
+                    letter-spacing: 0.5px;
                 }
 
                 .nom{
                     // border: solid 3px red;
                     font-size: 1rem;
                     font-weight: 700;
-                    color: $_text_color_3;
+                    // color: $_text_color_3;
                     opacity: 0.8;
                     text-align: right;
                 }
@@ -75,7 +76,7 @@ header{
                     // border: solid 3px red;
                     font-size: 0.8rem;
                     font-weight: 600;
-                    color: $_text_color_3;
+                    // color: $_text_color_3;
                     opacity: 0.5;
                     text-align: right;
                 }
@@ -92,6 +93,10 @@ header{
                     border-radius: 50%;
                     object-fit: cover;
                 }
+            }
+
+            .photo_profil.click_none{
+                cursor:default;
             }
         }
     }

@@ -28,6 +28,10 @@ $_text_color_4: $color_4;
 .bg_color_3{
     background-color: $_bg_color_3;
     color: $_text_color_2;
+
+    a{
+        color: $_text_color_2;
+    }
 }
 
 .bg_color_4{

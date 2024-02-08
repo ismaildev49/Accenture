@@ -70,15 +70,13 @@ aside{
                         // border: solid 1px blue;
                         width: 100%;
                         padding: 5px 0 5px 10px;
-                        // text-align: center;
                         font-size: 18px;
                         font-weight: 400;
-                        // letter-spacing: 0.5px;
-                        color: $_text_color_3;
+                        letter-spacing: 0.5px;
+                        // color: $_text_color_3;
                         transition: 300ms;
                         &:hover{
                             background-color: $_bg_color_2;
-                            // color: $_text_color_2;
                             color: $_text_color_3_opos;
                         }
 
@@ -104,6 +102,8 @@ aside{
                 // border: solid 1px green;
                 padding: 5px 0 5px 10px;
                 width: 100%;
+                font-weight: 400;
+                letter-spacing: 0.5px;
 
                 i{width: 30px;}
 
