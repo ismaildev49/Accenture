@@ -9,7 +9,7 @@ import UserDashboard from "../layout/userDashboard/userDashboard";
 import { Query } from "appwrite";
 
 // infos user
-export const InfosUsers = createContext();
+// export const InfosUsers = createContext();
 export const InfosUsersSession = createContext();
 
 
@@ -26,33 +26,36 @@ export default function Dashboard (){
       const loggedIn = await account.get("current");
       console.log("user logged in");
       if (loggedIn) {
-        try {
-          const user = await database.listDocuments(
-            import.meta.env.VITE_APP_DB_ID,
-            import.meta.env.VITE_APP_USER_COLLECTION_ID,
-            [
-              Query.equal("user_id", loggedIn.$id)
-            ]
-          )
-
-          setUserAuth(user.documents[0])
-
-          if (user.documents[0].isAdmin === true) {
-            setShowPage(
-              <InfosUsersSession.Provider value={userAuth} >
-                <AdminDashboard />
-              </InfosUsersSession.Provider>
+        if (!userAuth) {
+          try {
+            const user = await database.listDocuments(
+              import.meta.env.VITE_APP_DB_ID,
+              import.meta.env.VITE_APP_USER_COLLECTION_ID,
+              [
+                Query.equal("user_id", loggedIn.$id)
+              ]
             )
-          } else{
-            setShowPage(
-              <InfosUsersSession.Provider value={userAuth}>
-                <UserDashboard />
-              </InfosUsersSession.Provider>
-            )
+            
+            setUserAuth(user.documents[0])
+  
+            if (user.documents[0].isAdmin === true) {
+              setShowPage(
+                <InfosUsersSession.Provider value={user.documents[0]} >
+                  <AdminDashboard />
+                </InfosUsersSession.Provider>
+              )
+            } else{
+              setShowPage(
+                <InfosUsersSession.Provider value={user.documents[0]}>
+                  <UserDashboard />
+                </InfosUsersSession.Provider>
+              )
+            }
+          } catch (error) {
+            console.log("error: user not found");  
+            console.log(error)
           }
-        } catch (error) {
-          console.log("error: user not found");  
-          console.log(error)}
+        }
       }else{}
 
     } catch (err) {
@@ -65,7 +68,7 @@ export default function Dashboard (){
   
   useEffect(() => {
     init();
-  })
+  }, [userAuth])
   
 
   return (

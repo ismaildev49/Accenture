@@ -1,11 +1,11 @@
-body{
+//body{
     // background: $color_60;
     
     // color: white;
     // @include Larges{
     //     background-image: linear-gradient(to right, $color_60 50%, $color_50 50%);
     // };
-}
+//}
 
 #page{
     max-width: 1440px;
@@ -24,9 +24,9 @@ body{
         padding: 20px;
         overflow: auto;
 
-        .main_content{
+        //.main_content{
             // background-color: $_bg_color_1;
-        }
+        //}
     }
 
     #content{
