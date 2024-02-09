@@ -148,8 +148,8 @@ button {
   justify-content: space-between;
   align-items: center;
 }
-.header .container .logo {
-  width: 175px;
+.header .container .logo img {
+  width: 155px;
 }
 
 .home-body {
