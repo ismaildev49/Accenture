@@ -299,11 +299,11 @@ function ProfilPage(){
 
 function History() {
   const infosUser = useContext(InfosUsersSession)
-  const [showHistorique, setShowHistorique] = useState([])
   const [listHistorique, setListHistorique] = useState([])
 
   function fetchData() {
-    database.listDocuments(
+    if(listHistorique.length === 0){
+      database.listDocuments(
         import.meta.env.VITE_APP_DB_ID,
         import.meta.env.VITE_APP_DATES_COLLECTION_ID,
         [
@@ -334,6 +334,7 @@ function History() {
     }).catch((error) => {
         console.error("Error fetching user list:", error);
     });
+    }
 }
 
     useEffect(() => {
