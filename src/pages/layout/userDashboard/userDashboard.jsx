@@ -461,6 +461,7 @@ function Calendrie() {
           lat: infosUser.geolocHome.split(",")[0],
           lng: infosUser.geolocHome.split(",")[1],
         };
+        console.log(home);
         const client = {
           // GET GEOLOC
           lat: selectedAdress.geolocation.split(",")[0],
