@@ -490,39 +490,43 @@ function ModalAdresse(props) {
     const handleSubmite = async (e) => {
         e.preventDefault()
 
-        if (geo === "") {
-            const formattedAddress = newAdress.replace(/ /g, "+");
-            const url = `https://api.opencagedata.com/geocode/v1/json?q=${formattedAddress}&key=${
-                import.meta.env.VITE_APP_API_KEY_GEOLOC
-            }`;
-            await fetch(url)
-                .then((response) => response.json())
-                .then((data) => {
-                    const lat = data.results[0].geometry.lat;
-                    const lng = data.results[0].geometry.lng;
-                    console.log("lat",lat);
-                    console.log("lng",lng);
-                    database.createDocument(
-                        import.meta.env.VITE_APP_DB_ID,
-                        import.meta.env.VITE_APP_ADRESSES_COLLECTION_ID,
-                        ID.unique(),
-                        {
-                            fullAdress: newAdress,
-                            geolocation: lat+","+lng,
-                            clientName: newAdressClient
-                        }
-                    ).then((response) => {
-                        console.log(response);
-                        alert("document created");
-                        window.location.reload();
-                        }
-                    ).catch((error) => {
-                        console.error("document no created " + error);
+        if (newAdress === "" || newAdressClient === "") {
+            alert("Veuillez remplir tous les champs")
+        } else {
+            if (geo === "") {
+                const formattedAddress = newAdress.replace(/ /g, "+");
+                const url = `https://api.opencagedata.com/geocode/v1/json?q=${formattedAddress}&key=${
+                    import.meta.env.VITE_APP_API_KEY_GEOLOC
+                }`;
+                await fetch(url)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const lat = data.results[0].geometry.lat;
+                        const lng = data.results[0].geometry.lng;
+                        console.log("lat",lat);
+                        console.log("lng",lng);
+                        database.createDocument(
+                            import.meta.env.VITE_APP_DB_ID,
+                            import.meta.env.VITE_APP_ADRESSES_COLLECTION_ID,
+                            ID.unique(),
+                            {
+                                fullAdress: newAdress,
+                                geolocation: lat+","+lng,
+                                clientName: newAdressClient
+                            }
+                        ).then((response) => {
+                            console.log(response);
+                            alert("document created");
+                            window.location.reload();
+                            }
+                        ).catch((error) => {
+                            console.error("document no created " + error);
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching geocoding data:', error);
                     });
-                })
-                .catch((error) => {
-                    console.error('Error fetching geocoding data:', error);
-                });
+            }
         }
     }
 

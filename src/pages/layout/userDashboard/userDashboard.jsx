@@ -557,6 +557,8 @@ function Calendrie() {
         <div className="calendrier_content">
           <div className="eligible">
             {infosUser.eligible ? "You are eligible" : "You are not eligible"}
+            <br />
+            <i class='bx bx-info-circle'>instruction</i>
           </div>
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
