@@ -204,23 +204,42 @@ function Adresse(props) {
     const navigate = useNavigate();
 
     const [adresse, setAdresse] = useState("");
+    // const [newAdress , setNewAdress] = useState("")
 
     const handleAdresseChange = (e) => {
         setAdresse(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Perform the logic to update the user's address
         console.log("New address:", adresse);
-        database.updateDocument(infosUser.$databaseId, infosUser.$collectionId, infosUser.$id, {
-            homeAdress: adresse
-        }).then(response => {
-            alert("Adresse modifiée avec succès");
-            // window.location.reload();
-        }).catch(error => { 
-            console.log("error updating address");
-            console.log(error) });
+
+        const formattedAddress = adresse.replace(/ /g, "+");
+        const url = `https://api.opencagedata.com/geocode/v1/json?q=${formattedAddress}&key=${
+            import.meta.env.VITE_APP_API_KEY_GEOLOC
+        }`;
+        await fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                const lat = data.results[0].geometry.lat;
+                const lng = data.results[0].geometry.lng;
+                console.log("lat",lat);
+                console.log("lng",lng);
+                database.updateDocument(infosUser.$databaseId, infosUser.$collectionId, infosUser.$id, {
+                  homeAdress: adresse,
+                  geolocHome: lat+","+lng
+              }).then(response => {
+                  alert("Adresse modifiée avec succès");
+                  // window.location.reload();
+              }).catch(error => { 
+                  console.log("error updating address");
+                  console.log(error) });
+            })
+            .catch((error) => {
+                console.error('Error fetching geocoding data:', error);
+            });
+        
     };
 
     return (
