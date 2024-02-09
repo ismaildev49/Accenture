@@ -445,7 +445,7 @@ function Modal(props) {
 
     useEffect(() => {
         fetchData();
-    }, [showHistorique, listHistorique]);
+    }, [showHistorique]);
     
     return (
         <div className="show_modal_user_item">

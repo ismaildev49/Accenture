@@ -172,11 +172,15 @@ button {
   gap: 50px;
 }
 
+.login-body {
+  background-color: #1c2434;
+  overflow: hidden;
+}
 .login-body .container {
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
 }
 
 .screen {
@@ -184,7 +188,6 @@ button {
   position: relative;
   height: 90vh;
   width: 360px;
-  box-shadow: 0px 0px 24px #5C5696;
 }
 
 .screen__content {
@@ -580,6 +583,9 @@ aside .slideBar .btn_logout a:hover {
 .list_users table tbody, .list_adresses table tbody {
   width: 100%;
 }
+.list_users table tbody td, .list_adresses table tbody td {
+  font-size: 16px;
+}
 
 .list_users table tbody tr {
   cursor: pointer;
@@ -682,7 +688,7 @@ aside .slideBar .btn_logout a:hover {
 .historique_items .historique_item p {
   margin: 2px 0;
   padding: 5px 10px;
-  font-size: 18px;
+  font-size: 16px;
   background-color: white;
   width: 100%;
   display: flex;

@@ -379,12 +379,25 @@ function Calendrie() {
     if (dates.length > 0) {
       console.log("dates :", dates);
       console.log("isEligible(dates) :", isEligible(dates));
-      infosUser.eligible = isEligible(dates);
+      updateEligibility()
     }
 
     // console.log(JSON.parse(isEligible(dates)));
-  }, [dates]);
-
+  }, [dates, infosUser]);
+  const updateEligibility = async () => {
+    try {
+      await database.updateDocument(
+        import.meta.env.VITE_APP_DB_ID,
+        import.meta.env.VITE_APP_USER_COLLECTION_ID,
+        infosUser.$id,
+        {
+          eligible: isEligible(dates),
+        }
+      );
+    } catch (error) {
+      console.log("error while updating user eligibility :", error);
+    }
+  };
   const getAdresses = async () => {
     try {
       const adress = await database.listDocuments(
@@ -628,11 +641,13 @@ function Calendrie() {
 
       <div className="calendrier_content">
         <div className="eligible">
-          {infosUser.eligible ? (
-            <p style={{ color: "green" }}>You are eligible for this month</p>
-          ) : (
-            <p style={{ color: "red" }}>You are not eligible for this month</p>
-          )}
+          {
+            infosUser.eligible ? (
+              <p style={{ color: "green" }}>You are eligible for this month</p>
+            ) : (
+              <p style={{ color: "red" }}>You are not eligible for this month</p>
+            )
+          }
           <br />
         </div>
         <FullCalendar
