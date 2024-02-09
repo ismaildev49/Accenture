@@ -87,7 +87,7 @@ function SideBar(props){
     }
 
     return(
-    <aside className='bg_color_1 aside_off'>
+    <aside className='bg_color_3 aside_off'>
         <div className="slideBar">
             <div className='logo'>
                 <img src="../public/assets/logo.png" alt="logo" />
@@ -177,7 +177,7 @@ function Header(props){
 function Main(props){
     return(
     <main className='bg_color_2'>
-        <h2>{props.titrePage}</h2>
+        <h3 className='titre_page'>{props.titrePage}</h3>
         <div className="main_content">
             {props.showPage}
         </div>
@@ -218,7 +218,7 @@ function Users(){
                             <td>{user.firstName}</td>
                             <td>{user.lastName}</td>
                             <td>Employé</td>
-                            <td>{user.eligible ? "eligible" : "non eligible"}</td>
+                            {user.eligible ? <td style={{color: 'green'}}>eligible</td> : <td style={{color: 'red'}}>non eligible</td>}
                         </tr>
                 }))
             }
@@ -238,7 +238,7 @@ function Users(){
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
                     <td>Employé</td>
-                    <td>{user.eligible ? "eligible" : "non eligible"}</td>
+                    {user.eligible ? <td style={{color: 'green'}}>eligible</td> : <td style={{color: 'red'}}>non eligible</td>}
                 </tr>
         }))
     }
@@ -427,7 +427,7 @@ function Modal(props) {
                             <div key={index} className="historique_item">
                                 <p>{date.clientAdress}</p>
                                 <p>{dateObj}</p>
-                                <p>{date.eligible ? "eligible" : "non eligible"}</p>
+                                {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>non eligible</p>}
                             </div>
                             )
                     })
@@ -445,7 +445,7 @@ function Modal(props) {
 
     useEffect(() => {
         fetchData();
-    }, [showHistorique, listHistorique]);
+    }, [showHistorique]);
     
     return (
         <div className="show_modal_user_item">
@@ -462,7 +462,8 @@ function Modal(props) {
                             <h2>{props.user.firstName} {props.user.lastName}</h2>
                         </div>
                         <div className="ProfilPage_content_details_item">
-                            <p>Employer</p> <span className='line'></span> <p>{props.user.eligible ? "eligible" : "non eligible"}</p>  
+                            <p>Employer</p> <span className='line'></span> 
+                            {props.user.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>non eligible</p>}  
                         </div>
                         <div className="ProfilPage_content_details_item">
                             <p><span>Adresse: &nbsp; </span>{props.user.homeAdress}</p>

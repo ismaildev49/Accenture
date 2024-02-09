@@ -2,11 +2,15 @@
 
 
 .login-body{
+	background-color: $_bg_color_3;
+	overflow: hidden;
+	// height: 100%;
     .container {
+	height: 100vh;
+		// border: solid 10px red;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 100vh;
     }
 }
 
@@ -14,14 +18,16 @@
 
 
 .screen {		
+	// border: solid 10px red;
 	background: linear-gradient(90deg, #5D54A4, #7C78B8);		
 	position: relative;	
 	height: 90vh;
 	width: 360px;	
-	box-shadow: 0px 0px 24px #5C5696;
+	// box-shadow: 0px 0px 24px #5C5696;
 }
 
 .screen__content {
+	// border: solid 10px red;
 	z-index: 1;
 	position: relative;	
 	height: 100%;
@@ -80,6 +86,7 @@
 }
 
 .login {
+	// border: solid 10px red;
 	width: 320px;
 	padding: 30px;
 	padding-top: 120px;
@@ -146,6 +153,7 @@
 }
 
 .social-login {	
+	// border: solid 10px green;
 	position: absolute;
 	height: 140px;
 	width: 160px;

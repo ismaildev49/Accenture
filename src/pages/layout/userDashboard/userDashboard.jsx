@@ -97,12 +97,12 @@ function SideBar(props) {
     navigate("/login");
   };
 
-  return (
-    <aside className="bg_color_1 aside_off">
-      <div className="slideBar">
-        <div className="logo">
-          <img src="../assets/logo.png" alt="logo" />
-        </div>
+    return(
+    <aside className='bg_color_3 aside_off'>
+        <div className="slideBar">
+            <div className='logo'>
+                <img src="../assets/logo.png" alt="logo" />
+            </div>
 
         {/* <i onClick={handleClick} className='bx bxs-chevron-left btn_off_slideBar'></i> */}
         <i
@@ -191,11 +191,11 @@ function Header(props) {
   );
 }
 
-function Main(props) {
-  return (
-    <main className="bg_color_2">
-      <h2>{props.titrePage}</h2>
-      {props.showPage}
+function Main(props){
+    return(
+    <main className='bg_color_2'>
+        <h3 className='titre_page'>{props.titrePage}</h3>
+        {props.showPage}
     </main>
   );
 }
@@ -286,33 +286,25 @@ function ProfilPage() {
           <img src={infosUser.profile_picture} alt="photo profil" />
         </div>
 
-        <div className="ProfilPage_content_details">
-          <div className="ProfilPage_content_details_item">
-            <h2>
-              {infosUser.firstName} {infosUser.lastName}
-            </h2>
-          </div>
-          <div className="ProfilPage_content_details_item">
-            <p>Employer</p> <span className="line"></span>{" "}
-            <p>eligible pour le FMB</p>
-          </div>
-          <div className="ProfilPage_content_details_item">
-            <p>
-              <span>Adresse: &nbsp; </span>
-              {infosUser.homeAdress}
-            </p>
-          </div>
-          <div className="ProfilPage_content_details_item">
-            <p>
-              <span>Email: &nbsp; </span>email@email.com
-            </p>
-          </div>
-          <div className="ProfilPage_content_details_item">
-            <p>
-              <span>GSM: &nbsp; </span>0000.000.000.000
-            </p>
-          </div>
-          {/* <div className="ProfilPage_content_details_item">
+                <div className="ProfilPage_content_details">
+                    <div className="ProfilPage_content_details_item">
+                        <h2>{infosUser.firstName} {infosUser.lastName}</h2>
+                    </div>
+                    <div className="ProfilPage_content_details_item">
+                        <p>Employer</p> <span className='line'></span> 
+                        {infosUser.eligible ? <p style={{color: 'green'}}>eligible pour le FMB</p> : 
+                        <p style={{color: 'red'}}>non eligible pour le FMB</p>}
+                    </div>
+                    <div className="ProfilPage_content_details_item">
+                        <p><span>Adresse: &nbsp; </span>{infosUser.homeAdress}</p>
+                    </div>
+                    <div className="ProfilPage_content_details_item">
+                        <p><span>Email: &nbsp; </span>email@email.com</p>
+                    </div>
+                    <div className="ProfilPage_content_details_item">
+                        <p><span>GSM: &nbsp; </span>0000.000.000.000</p>
+                    </div>
+                    {/* <div className="ProfilPage_content_details_item">
                         <p><span>Rôle: &nbsp; </span>Employer</p>
                     </div> */}
           {/* <div className="ProfilPage_content_details_item">
@@ -339,16 +331,16 @@ function History() {
         .then((response) => {
           if (response.documents.length > 0) {
             setListHistorique(
-              response.documents.map((date, index) => {
-                let dateObj = date.date.split("T")[0];
-                return (
-                  <div key={index} className="historique_item">
-                    <p>{date.clientAdress}</p>
-                    <p>{dateObj}</p>
-                    <p>{date.eligible ? "eligible" : "non eligible"}</p>
-                  </div>
-                );
-              })
+                response.documents.map((date, index) => {
+                  let dateObj = date.date.split('T')[0]
+                    return (
+                      <div key={index} className="historique_item">
+                        <p>{date.clientAdress}</p>
+                        <p>{dateObj}</p>
+                        {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>non eligible</p>}
+                    </div>
+                    );
+                })
             );
           } else {
             setListHistorique(
@@ -386,7 +378,6 @@ function Calendrie() {
   const [workedError, setWorkedError] = useState("");
   const [adressError, setAdressError] = useState("");
   const [dates, setDates] = useState([]);
-  const [eligible, setEligible] = useState(null);
 
   useEffect(() => {
     getDates();
@@ -398,11 +389,10 @@ function Calendrie() {
       console.log("dates :", dates);
       console.log("isEligible(dates) :", isEligible(dates));
       updateEligibility()
-      // infosUser.eligible = isEligible(dates);
     }
 
     // console.log(JSON.parse(isEligible(dates)));
-  }, [dates]);
+  }, [dates, infosUser]);
   const updateEligibility = async () => {
     try {
       await database.updateDocument(
@@ -413,12 +403,10 @@ function Calendrie() {
           eligible: isEligible(dates),
         }
       );
-      setEligible(() => isEligible(dates));
     } catch (error) {
       console.log("error while updating user eligibility :", error);
     }
   };
-
   const getAdresses = async () => {
     try {
       const adress = await database.listDocuments(
@@ -662,11 +650,13 @@ function Calendrie() {
 
       <div className="calendrier_content">
         <div className="eligible">
-          {eligible ? (
-            <p style={{ color: "green" }}>You are eligible for this month</p>
-          ) : (
-            <p style={{ color: "red" }}>You are not eligible for this month</p>
-          )}
+          {
+            infosUser.eligible ? (
+              <p style={{ color: "green" }}>You are eligible for this month</p>
+            ) : (
+              <p style={{ color: "red" }}>You are not eligible for this month</p>
+            )
+          }
           <br />
         </div>
         <FullCalendar
@@ -695,48 +685,50 @@ function Calendrie() {
     </div>
   );
 }
-
-// const handleGeocode = (address) => {
-//   const formattedAddress = address.replace(/ /g, "+");
-//   const url = `https://api.opencagedata.com/geocode/v1/json?q=${formattedAddress}&key=${
-//     import.meta.env.VITE_APP_API_KEY_GEOLOC
-//   }`;
-
-//   fetch(url)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       const lat = data.results[0].geometry.lat;
-//       const lng = data.results[0].geometry.lng;
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching geocoding data:", error);
-//     });
-// };
-
-const haversine = (lat1, lon1, lat2, lon2) => {
-  const R = 6_371;
-  const deltaLat = (lat2 - lat1) * (Math.PI / 180);
-  const deltaLon = (lon2 - lon1) * (Math.PI / 180);
-  const a =
-    Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-    Math.cos(lat1 * (Math.PI / 180)) *
-      Math.cos(lat2 * (Math.PI / 180)) *
-      Math.sin(deltaLon / 2) *
-      Math.sin(deltaLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = R * c; // Distance in kilometers
-
-  return distance;
-};
-
-// const handleCalculateDistance = () => {
-//   if (coordinates1 && coordinates2) {
-//     const distance = haversine(
-//       coordinates1.lat,
-//       coordinates1.lng,
-//       coordinates2.lat,
-//       coordinates2.lng
-//     );
-//     setDistance(distance.toFixed(2)); // Round to 2 decimal places
-//   }
-// };
+  
+  const handleGeocode = (address) => {
+    const formattedAddress = address.replace(/ /g, "+");
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${formattedAddress}&key=${
+      import.meta.env.VITE_APP_API_KEY_GEOLOC
+    }`;
+  
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        const lat = data.results[0].geometry.lat;
+        const lng = data.results[0].geometry.lng;
+      })
+      .catch((error) => {
+        console.error("Error fetching geocoding data:", error);
+      });
+  };
+  
+  const haversine = (lat1, lon1, lat2, lon2) => {
+    const R = 6_371;
+    const deltaLat = (lat2 - lat1) * (Math.PI / 180);
+    const deltaLon = (lon2 - lon1) * (Math.PI / 180);
+    const a =
+      Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) *
+        Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(deltaLon / 2) *
+        Math.sin(deltaLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Distance in kilometers
+  
+    return distance;
+  };
+  
+  const handleCalculateDistance = () => {
+    if (coordinates1 && coordinates2) {
+      const distance = haversine(
+        coordinates1.lat,
+        coordinates1.lng,
+        coordinates2.lat,
+        coordinates2.lng
+      );
+      setDistance(distance.toFixed(2)); // Round to 2 decimal places
+    }
+  };
+  
+  
