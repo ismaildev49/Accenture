@@ -97,7 +97,7 @@ function SideBar(props){
     <aside className='bg_color_1 aside_off'>
         <div className="slideBar">
             <div className='logo'>
-                <img src="../public/assets/logo.png" alt="logo" />
+                <img src="../assets/logo.png" alt="logo" />
             </div>
 
             {/* <i onClick={handleClick} className='bx bxs-chevron-left btn_off_slideBar'></i> */}
@@ -463,7 +463,7 @@ function Calendrie() {
             }
           ).then((response) => {
             console.log("response :", response);
-            // alert("Data sent");
+            alert("Data sent");
             window.location.reload();
           })
         } catch (error) {
@@ -558,7 +558,6 @@ function Calendrie() {
           <div className="eligible">
             {infosUser.eligible ? "You are eligible" : "You are not eligible"}
             <br />
-            <i class='bx bx-info-circle'>instruction</i>
           </div>
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}

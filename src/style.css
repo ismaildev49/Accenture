@@ -133,7 +133,7 @@ button {
 }
 
 .home-body {
-  background-image: url(../../../public/assets/hero-background.jpg);
+  background-image: url("../../../assets/hero-background.jpg");
   background-size: cover;
   height: 100vh;
   position: relative;
@@ -820,4 +820,16 @@ aside .slideBar .btn_logout a:hover {
   transition: all 0.4s;
   background-color: rgb(27, 27, 27);
   color: #f1f5f9;
+}
+
+.fc-col-header-cell {
+  background-color: #bd00ff;
+  color: white;
+}
+
+.eligible {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */
