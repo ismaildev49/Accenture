@@ -1,10 +1,18 @@
 .fc-col-header-cell{
-    background-color: $_bg_color_4;
+    background-color: $_bg_color_3;
     color: $_text_color_1;
+    font-size: 20px;
+    // padding: 10px 0;
+}
+
+.fc-scrollgrid-sync-inner{
+    // background-color: $_bg_color_1;
+    // color: $_text_color_3;
 }
 
 .eligible{
-    background-color: $_bg_color_1;
+    // background-color: $_bg_color_1;
     // color: $_text_color_1;
-    @include Dfx_JCc_AIc
+    @include Dfx_JCfe_AIc;
+    padding: 10px;
 }

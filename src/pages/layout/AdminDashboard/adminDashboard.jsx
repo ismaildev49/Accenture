@@ -388,19 +388,23 @@ function Modal(props) {
     const [listHistorique, setListHistorique] = useState([])
 
     function fetchData() {
-        if (listHistorique.length === 0) {
-            database.listDocuments(
-                import.meta.env.VITE_APP_DB_ID,
-                import.meta.env.VITE_APP_DATES_COLLECTION_ID,
-                [
-                    Query.equal("user", props.user.$id)
-                ]
-            ).then((response) => {
+        database.listDocuments(
+            import.meta.env.VITE_APP_DB_ID,
+            import.meta.env.VITE_APP_DATES_COLLECTION_ID,
+            [
+                Query.equal("user", props.user.$id)
+            ]
+        ).then((response) => {
+            
+            if (response.documents.length > 0) {
                 setListHistorique(response.documents);
-            }).catch((error) => {
-                console.error("Error fetching user list:", error);
-            });
-        }
+            }else{
+                setListHistorique(null);
+            }
+
+        }).catch((error) => {
+            console.error("Error fetching user list:", error);
+        });
     }
 
     const handleClickOffModal = () => {
@@ -409,22 +413,34 @@ function Modal(props) {
 
     const handleHistorique = () => {
         if (showHistorique.length === 0) {
-            setShowHistorique(
-                listHistorique.map((date, index) => {
-                    console.log(date.eligible);
-                    let dateObj = date.date.split('T')[0]
-                    return (
-                        <div key={index} className="historique_item">
-                            <p>{date.clientAdress}</p>
-                            <p>{dateObj}</p>
-                            <p>{date.eligible ? "eligible" : "non eligible"}</p>
+            if (listHistorique == null) {
+                setShowHistorique(
+                        <div className="historique_item">
+                            <p>Aucun adresse dans la liste</p>
                         </div>
-                        )
-                })
-            )
-        }else{
-            setShowHistorique([])
+                    )
+            }else{
+                setShowHistorique(
+                    listHistorique.map((date, index) => {
+                        let dateObj = date.date.split('T')[0]
+                        return (
+                            <div key={index} className="historique_item">
+                                <p>{date.clientAdress}</p>
+                                <p>{dateObj}</p>
+                                <p>{date.eligible ? "eligible" : "non eligible"}</p>
+                            </div>
+                            )
+                    })
+                )
+            }
         }
+        // else{
+        //     setShowHistorique(
+        //         <div key={index} className="historique_item">
+        //             <p>Aucun adresse dans la liste</p>
+        //         </div>
+        //     )
+        // }
     }
 
     useEffect(() => {

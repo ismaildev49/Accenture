@@ -645,25 +645,26 @@ aside .slideBar .btn_logout a:hover {
   background-color: rgb(27, 27, 27);
   color: white;
 }
-.show_modal_user_item .historique .historique_items {
+
+.historique_items {
   width: 100%;
   padding: 20px;
   transition: 0.5s;
 }
-.show_modal_user_item .historique .historique_item {
+.historique_items .historique_item {
   width: 100%;
   max-width: 700px;
   margin: auto;
   display: flex;
 }
-.show_modal_user_item .historique .historique_item p {
+.historique_items .historique_item p {
   margin: 2px 0;
   padding: 5px 10px;
   font-size: 18px;
   background-color: white;
   width: 100%;
 }
-.show_modal_user_item .historique .historique_item:nth-child(odd) p {
+.historique_items .historique_item:nth-child(odd) p {
   background-color: #f1f5f9;
 }
 
@@ -823,13 +824,14 @@ aside .slideBar .btn_logout a:hover {
 }
 
 .fc-col-header-cell {
-  background-color: #bd00ff;
+  background-color: rgb(27, 27, 27);
   color: white;
+  font-size: 20px;
 }
 
 .eligible {
-  background-color: white;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  padding: 10px;
 }/*# sourceMappingURL=style.css.map */
