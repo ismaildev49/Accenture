@@ -26,6 +26,7 @@ export default function UserDashboard() {
         {path: "profil", composant: <ProfilPage />},
         {path: "calendrier", composant: <Calendrie />},
         {path: "adresse", composant: <Adresse changeComposant={changeComposant} />},
+        // {path: "adresse", composant: <Histori />},
     ]
     function changeComposant(composant="") {
         if (composant == "") {
@@ -116,6 +117,12 @@ function SideBar(props){
                             <i className="fa-solid fa-gears"></i> Adresse
                         </a>
                     </li>
+
+                    {/* <li onClick={handleClick}>
+                        <a onClick={() => handleClickPage("adresse")}>
+                        <i class='bx bx-history'></i> Historique
+                        </a>
+                    </li> */}
                 </ul>
             </nav>
 
@@ -210,7 +217,7 @@ function Adresse(props) {
             homeAdress: adresse
         }).then(response => {
             alert("Adresse modifiée avec succès");
-            window.location.reload();
+            // window.location.reload();
         }).catch(error => { 
             console.log("error updating address");
             console.log(error) });
@@ -321,6 +328,7 @@ function Calendrie() {
   
     useEffect(() => {
       getDates();
+      console.log(" infosUser ------------> "+ JSON.stringify(infosUser));
     }, []);
   
     useEffect(() => {
@@ -375,7 +383,7 @@ function Calendrie() {
         const dates = await database.listDocuments(
           import.meta.env.VITE_APP_DB_ID,
           import.meta.env.VITE_APP_DATES_COLLECTION_ID,
-          [Query.equal("user", infosUser.$id)]
+          [Query.equal("user", infosUser.$id),Query.limit(100)],
         );
         console.log("result :", dates.documents);
         setDates(() => dates.documents);
@@ -455,8 +463,8 @@ function Calendrie() {
             }
           ).then((response) => {
             console.log("response :", response);
-            alert("Data sent");
-            // window.location.reload();
+            // alert("Data sent");
+            window.location.reload();
           })
         } catch (error) {
           
@@ -520,8 +528,8 @@ function Calendrie() {
               Where did you work on {date} ?
               <div className="adressError">{adressError}</div>
               <br />
-              <select name="adress" id="adress" onChange={handleSelectedAdress}>
-                <option value={""} selected></option>
+              <select name="adress" id="adress" defaultValue={""} onChange={handleSelectedAdress}>
+                <option ></option>
                 <option value={infosUser.homeAdress}>Home</option>
   
                 {adresses.map((adress) => {
@@ -556,7 +564,7 @@ function Calendrie() {
             headerToolbar={{
               start: "title", // will normally be on the left. if RTL, will be on the right
               center: "",
-              end: "today,prev,next", // will normally be on the right. if RTL, will be on the left
+              end: "", // will normally be on the right. if RTL, will be on the left
             }}
             events={dates.map((date) => {
               return {
