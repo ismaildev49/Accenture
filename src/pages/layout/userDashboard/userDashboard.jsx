@@ -456,12 +456,13 @@ function Calendrie() {
           ).then((response) => {
             console.log("response :", response);
             alert("Data sent");
-            window.location.reload();
+            // window.location.reload();
           })
         } catch (error) {
           
         
             alert("Document already exists");
+            window.location.reload();
           
   
         }
@@ -559,7 +560,7 @@ function Calendrie() {
             }}
             events={dates.map((date) => {
               return {
-                title: "Data sent",
+                title: date.clientAdress,
                 date: date.date,
                 color: date.eligible ? "green" : "red",
               };
@@ -567,11 +568,6 @@ function Calendrie() {
             // locale='fr'
             selectable={true}
             dateClick={function (info) {
-              // alert('Clicked on: ' + info.dateStr);
-              // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-              // alert('Current view: ' + info.view.type);
-              // change the day's background color just for fun
-              // info.dayEl.style.cursor = "pointer";
               setDate(info.dateStr);
               handleClickCaseCalendrier(info.dateStr);
             }}
