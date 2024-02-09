@@ -78,6 +78,7 @@
 
     .historique_item{
         // border: solid 1px green;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         width: 100%;
         max-width: 700px;
         margin: auto;
@@ -89,6 +90,8 @@
             font-size: 18px;
             background-color: $_bg_color_1;
             width: 100%;
+
+            @include Dfx_JCc_AIc;
         }
         // p:nth-child(odd){
         //     background-color: $_bg_color_3;

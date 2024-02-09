@@ -94,7 +94,7 @@ function SideBar(props){
     }
 
     return(
-    <aside className='bg_color_1 aside_off'>
+    <aside className='bg_color_3 aside_off'>
         <div className="slideBar">
             <div className='logo'>
                 <img src="../assets/logo.png" alt="logo" />
@@ -189,7 +189,7 @@ function Header(props){
 function Main(props){
     return(
     <main className='bg_color_2'>
-        <h2>{props.titrePage}</h2>
+        <h3 className='titre_page'>{props.titrePage}</h3>
         {props.showPage}
     </main>
     )
@@ -273,7 +273,9 @@ function ProfilPage(){
                         <h2>{infosUser.firstName} {infosUser.lastName}</h2>
                     </div>
                     <div className="ProfilPage_content_details_item">
-                        <p>Employer</p> <span className='line'></span> <p>eligible pour le FMB</p>  
+                        <p>Employer</p> <span className='line'></span> 
+                        {infosUser.eligible ? <p style={{color: 'green'}}>eligible pour le FMB</p> : 
+                        <p style={{color: 'red'}}>non eligible pour le FMB</p>}
                     </div>
                     <div className="ProfilPage_content_details_item">
                         <p><span>Adresse: &nbsp; </span>{infosUser.homeAdress}</p>
@@ -319,7 +321,7 @@ function History() {
                       <div key={index} className="historique_item">
                         <p>{date.clientAdress}</p>
                         <p>{dateObj}</p>
-                        <p>{date.eligible ? "eligible" : "non eligible"}</p>
+                        {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>non eligible</p>}
                     </div>
                     );
                 })
@@ -359,277 +361,306 @@ function History() {
 // CALENDRIER
 
 function Calendrie() {
-    const infosUser = useContext(InfosUsersSession);
-    const [date, setDate] = useState("");
-    const [adresses, setAdresses] = useState([]);
-    const [worked, setWorked] = useState("");
-    const [selectedAdress, setSelectedAdress] = useState("");
-    const [workedError, setWorkedError] = useState("");
-    const [adressError, setAdressError] = useState("");
-    const [dates, setDates] = useState([]);
-  
-    useEffect(() => {
-      getDates();
-      console.log(" infosUser ------------> "+ JSON.stringify(infosUser));
-    }, []);
-  
-    useEffect(() => {
-      if (dates.length > 0) {
-        console.log("dates :", dates);
-        console.log("isEligible(dates) :", isEligible(dates));
-        infosUser.eligible = isEligible(dates);
-      }
-  
-      // console.log(JSON.parse(isEligible(dates)));
-    }, [dates]);
-  
-    const getAdresses = async () => {
-      try {
-        const adress = await database.listDocuments(
-          import.meta.env.VITE_APP_DB_ID,
-          import.meta.env.VITE_APP_ADRESSES_COLLECTION_ID
-        );
-        console.log("result :", adress);
-        setAdresses(() => adress.documents);
-      } catch (error) {
-        console.log("error while fetching adresses from db :", error);
-      }
-    };
-    function isEligible(array) {
-      console.log("arrayyy", array);
-   
-      //1 Test si il faut JSON.parse etc...
-      let adresseTop;
-      let count = 0;
-      let top = 0;
-      let test;
-      for (let i = 0; i < array.length; i++) {
-        count = 0;
-        test = array[i];
-        for (let j = 0; j < array[i].length; j++) {
-          if (test.eligible !== null && array[i] !== null) {
-            if (array[i].eligible === true) {
-              count++;
-            }
+  const infosUser = useContext(InfosUsersSession);
+  const [date, setDate] = useState("");
+  const [adresses, setAdresses] = useState([]);
+  const [worked, setWorked] = useState("");
+  const [selectedAdress, setSelectedAdress] = useState("");
+  const [workedError, setWorkedError] = useState("");
+  const [adressError, setAdressError] = useState("");
+  const [dates, setDates] = useState([]);
+
+  useEffect(() => {
+    getDates();
+    console.log(" infosUser ------------> " + JSON.stringify(infosUser));
+  }, []);
+
+  useEffect(() => {
+    if (dates.length > 0) {
+      console.log("dates :", dates);
+      console.log("isEligible(dates) :", isEligible(dates));
+      infosUser.eligible = isEligible(dates);
+    }
+
+    // console.log(JSON.parse(isEligible(dates)));
+  }, [dates]);
+
+  const getAdresses = async () => {
+    try {
+      const adress = await database.listDocuments(
+        import.meta.env.VITE_APP_DB_ID,
+        import.meta.env.VITE_APP_ADRESSES_COLLECTION_ID
+      );
+      console.log("result :", adress);
+      setAdresses(() => adress.documents);
+    } catch (error) {
+      console.log("error while fetching adresses from db :", error);
+    }
+  };
+  function isEligible(array) {
+    console.log("arrayyy", array);
+
+    //1 Test si il faut JSON.parse etc...
+    let adresseTop;
+    let count = 0;
+    let top = 0;
+    let test;
+    for (let i = 0; i < array.length; i++) {
+      count = 0;
+      test = array[i];
+      for (let j = 0; j < array[i].length; j++) {
+        if (test.eligible !== null && array[i] !== null) {
+          if (array[i].eligible === true) {
+            count++;
           }
         }
-        if (count > top) {
-          top = count;
-          adresseTop = test;
-        }
       }
-      return test.eligible;
+      if (count > top) {
+        top = count;
+        adresseTop = test;
+      }
     }
-    const getDates = async () => {
-      try {
-        const dates = await database.listDocuments(
-          import.meta.env.VITE_APP_DB_ID,
-          import.meta.env.VITE_APP_DATES_COLLECTION_ID,
-          [Query.equal("user", infosUser.$id),Query.limit(100)],
-        );
-        console.log("result :", dates.documents);
-        setDates(() => dates.documents);
-      } catch (error) {
-        console.log("error while fetching dates from db :", error);
+    return test.eligible;
+  }
+  const getDates = async () => {
+    try {
+      const dates = await database.listDocuments(
+        import.meta.env.VITE_APP_DB_ID,
+        import.meta.env.VITE_APP_DATES_COLLECTION_ID,
+        [Query.equal("user", infosUser.$id), Query.limit(100)]
+      );
+      console.log("result :", dates.documents);
+      setDates(() => dates.documents);
+    } catch (error) {
+      console.log("error while fetching dates from db :", error);
+    }
+  };
+
+  const handleClickCaseCalendrier = (infos) => {
+    console.log("infos user : ", infosUser);
+    getAdresses();
+    console.log(infos);
+    console.log("type of date : ", typeof infos);
+    setDate(() => infos);
+    document.querySelector(".modal").style.display = "flex";
+  };
+  const handleWorkedChange = (e) => {
+    console.log("workedtargetvalue :", e.target.value);
+    const boolValue = e.target.value === "true";
+    setWorked(() => boolValue);
+
+    setWorkedError("");
+    console.log("boolvalue", boolValue);
+    // If no radio button is selected (neither "true" nor "false"), display an error
+    if (boolValue !== true && boolValue !== false) {
+      setWorkedError("Please select if you worked or not");
+    }
+  };
+  const handleSelectedAdress = (e) => {
+    const selectedAddressObject = JSON.parse(e.target.value);
+    console.log("Selected address object:", selectedAddressObject);
+    setSelectedAdress(() => selectedAddressObject);
+  };
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    dates.forEach((element) => {
+      console.log("split from database date", element.date.split("T")[0], date);
+      console.log("user verification :", element.user, infosUser.$id);
+    });
+
+    for (let i = 0; i < dates.length; i++) {
+      if (
+        dates[i].date.split("T")[0] === date &&
+        dates[i].user.$id === infosUser.$id
+      ) {
+        alert("You already filled this date, please select another date");
+        window.location.reload();
       }
-    };
-  
-    const handleClickCaseCalendrier = (infos) => {
-      console.log("infos user : ", infosUser);
-      getAdresses();
-      console.log(infos);
-      console.log("type of date : ", typeof infos);
-      setDate(() => infos);
-      document.querySelector(".modal").style.display = "flex";
-    };
-    const handleWorkedChange = (e) => {
-      console.log("workedtargetvalue :", e.target.value);
-      const boolValue = e.target.value === "true";
-      setWorked(() => boolValue);
-  
-      setWorkedError("");
-      console.log("boolvalue", boolValue);
-      // If no radio button is selected (neither "true" nor "false"), display an error
-      if (boolValue !== true && boolValue !== false) {
+    }
+
+    // verification if all fields are filled
+    if (!selectedAdress || !worked) {
+      // Display error message for each missing field
+      if (!selectedAdress) {
+        // Show error for selectedAdress
+        setAdressError("Please select an adress");
+      }
+      if (worked !== true && worked !== false) {
+        // Show error for worked
         setWorkedError("Please select if you worked or not");
       }
-    };
-    const handleSelectedAdress = (e) => {
-      const selectedAddressObject = JSON.parse(e.target.value);
-      console.log("Selected address object:", selectedAddressObject);
-      setSelectedAdress(() => selectedAddressObject);
-    };
-    const handleFormSubmit = async (e) => {
-      e.preventDefault();
-      
-      // verification if all fields are filled
-      if (!selectedAdress || !worked) {
-        // Display error message for each missing field
-        if (!selectedAdress) {
-          // Show error for selectedAdress
-          setAdressError("Please select an adress");
-        }
-        if (worked !== true && worked !== false) {
-          // Show error for worked
-          setWorkedError("Please select if you worked or not");
-        }
+    } else {
+      // If all fields are filled, calculate the distance between the user's home and the selected adress to know if the user is eligible or not.
+      console.log("home adress :", infosUser.homeAdress);
+      console.log("selected adress :", selectedAdress);
+      const home = {
+        lat: infosUser.geolocHome.split(",")[0],
+        lng: infosUser.geolocHome.split(",")[1],
+      };
+      console.log("home :", home);
+
+      //if the user selected his home adress, the distance is 0
+      let distance;
+      if (selectedAdress === infosUser.homeAdress) {
+        distance = 0;
       } else {
-        // If all fields are filled, calculate the distance between the user's home and the selected adress to know if the user is eligible or not.
-        console.log("home adress :", infosUser.homeAdress);
-        console.log("selected adress :", selectedAdress);
-        const home = {
-          lat: infosUser.geolocHome.split(",")[0],
-          lng: infosUser.geolocHome.split(",")[1],
-        };
-        console.log(home);
         const client = {
           // GET GEOLOC
           lat: selectedAdress.geolocation.split(",")[0],
           lng: selectedAdress.geolocation.split(",")[1],
         };
         console.log("client geoloc ", client.lat, client.lng);
-        const distance = haversine(home.lat, home.lng, client.lat, client.lng);
+        distance = haversine(home.lat, home.lng, client.lat, client.lng);
         console.log("distance :", distance);
-  
+
         console.log("home geoloc", home);
-        try {
-          await database.createDocument(
+      }
+      try {
+        await database
+          .createDocument(
             import.meta.env.VITE_APP_DB_ID,
             import.meta.env.VITE_APP_DATES_COLLECTION_ID,
             "unique()",
             {
               date: date,
-              clientAdress: selectedAdress.fullAdress,
+              clientAdress:
+                selectedAdress === infosUser.homeAdress
+                  ? infosUser.homeAdress
+                  : selectedAdress.fullAdress,
               worked: worked,
               user: infosUser.$id,
               eligible: distance < 10 ? true : false,
             }
-          ).then((response) => {
+          )
+          .then((response) => {
             console.log("response :", response);
             alert("Data sent");
             window.location.reload();
-          })
-        } catch (error) {
-          
-        
-            alert("Document already exists");
-            window.location.reload();
-          
-  
-        }
-        setDate("");
-        setWorked("");
-        setSelectedAdress("");
-        setWorkedError("");
-        setAdressError("");
-        document.querySelector(".modal").style.display = "none";
+          });
+      } catch (error) {
+        console.log("error while creating document in date table :", error);
       }
-    };
-  
-    return (
-      <div className="calendrier">
-        <div className="modal">
-          <i
-            className="fa-solid fa-xmark"
-            onClick={() => {
-              document.querySelector(".modal").style.display = "none";
-            }}
-          ></i>
-          <form onSubmit={handleFormSubmit}>
-            <h3>{date}</h3>
+      setDate("");
+      setWorked("");
+      setSelectedAdress("");
+      setWorkedError("");
+      setAdressError("");
+      document.querySelector(".modal").style.display = "none";
+    }
+  };
+
+  return (
+    <div className="calendrier">
+      <div className="modal">
+        <i
+          className="fa-solid fa-xmark"
+          onClick={() => {
+            document.querySelector(".modal").style.display = "none";
+          }}
+        ></i>
+        <form onSubmit={handleFormSubmit}>
+          <h3>{date}</h3>
+          <br />
+          <label>
+            Did you work on {date} ?
+            <div className="workedError">{workedError}</div>
             <br />
             <label>
-              Did you work on {date} ?
-              <div className="workedError">{workedError}</div>
-              <br />
-              <label>
-                <input
-                  type="radio"
-                  name="worked"
-                  placeholder="travaillé?"
-                  value={"true"}
-                  onChange={handleWorkedChange}
-                />
-                Oui
-              </label>
-              <br />
-              <label>
-                <input
-                  type="radio"
-                  name="worked"
-                  placeholder="travaillé?"
-                  value={"false"}
-                  onChange={handleWorkedChange}
-                />
-                Non
-              </label>
+              <input
+                type="radio"
+                name="worked"
+                placeholder="travaillé?"
+                value={"true"}
+                onChange={handleWorkedChange}
+              />
+              Oui
             </label>
             <br />
-            <br />
-  
             <label>
-              Where did you work on {date} ?
-              <div className="adressError">{adressError}</div>
-              <br />
-              <select name="adress" id="adress" defaultValue={""} onChange={handleSelectedAdress}>
-                <option ></option>
-                <option value={infosUser.homeAdress}>Home</option>
-  
-                {adresses.map((adress) => {
-                  console.log("adress :", adress);
-  
-                  return (
-                    <option
-                      key={adress.$id}
-                      className={adress.geolocation}
-                      value={JSON.stringify(adress)}
-                    >
-                      {adress.clientName}
-                    </option>
-                  );
-                })}
-              </select>
+              <input
+                type="radio"
+                name="worked"
+                placeholder="travaillé?"
+                value={"false"}
+                onChange={handleWorkedChange}
+              />
+              Non
             </label>
-  
+          </label>
+          <br />
+          <br />
+
+          <label>
+            Where did you work on {date} ?
+            <div className="adressError">{adressError}</div>
             <br />
-            <br />
-            <button className="btn">envoyer</button>
-          </form>
-        </div>
-  
-        <div className="calendrier_content">
-          <div className="eligible">
-            {infosUser.eligible ? 
-            <p style={{color: 'green'}}>You are eligible for the month</p> : 
-            <p style={{color: 'red'}}>You are not eligible</p>}
-            <br />
-          </div>
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView={"dayGridMonth"}
-            headerToolbar={{
-              start: "title", // will normally be on the left. if RTL, will be on the right
-              center: "",
-              end: "", // will normally be on the right. if RTL, will be on the left
-            }}
-            events={dates.map((date) => {
-              return {
-                title: date.clientAdress,
-                date: date.date,
-                color: date.eligible ? "green" : "red",
-              };
-            })}
-            // locale='fr'
-            selectable={true}
-            dateClick={function (info) {
-              setDate(info.dateStr);
-              handleClickCaseCalendrier(info.dateStr);
-            }}
-          />
-        </div>
+            <select
+              name="adress"
+              id="adress"
+              defaultValue={""}
+              onChange={handleSelectedAdress}
+            >
+              <option></option>
+              <option value={JSON.stringify(infosUser.homeAdress)}>Home</option>
+
+              {adresses.map((adress) => {
+                console.log("adress :", adress);
+
+                return (
+                  <option
+                    key={adress.$id}
+                    className={adress.geolocation}
+                    value={JSON.stringify(adress)}
+                  >
+                    {adress.clientName}
+                  </option>
+                );
+              })}
+            </select>
+          </label>
+
+          <br />
+          <br />
+          <button className="btn">envoyer</button>
+        </form>
       </div>
-    );
-  }
+
+      <div className="calendrier_content">
+        <div className="eligible">
+          {infosUser.eligible ? (
+            <p style={{ color: "green" }}>You are eligible for this month</p>
+          ) : (
+            <p style={{ color: "red" }}>You are not eligible for this month</p>
+          )}
+          <br />
+        </div>
+        <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          initialView={"dayGridMonth"}
+          headerToolbar={{
+            start: "title", // will normally be on the left. if RTL, will be on the right
+            center: "",
+            end: "", // will normally be on the right. if RTL, will be on the left
+          }}
+          events={dates.map((date) => {
+            return {
+              title: date.clientAdress,
+              date: date.date,
+              color: date.eligible ? "green" : "red",
+            };
+          })}
+          // locale='fr'
+          selectable={true}
+          dateClick={function (info) {
+            setDate(info.dateStr);
+            handleClickCaseCalendrier(info.dateStr);
+          }}
+        />
+      </div>
+    </div>
+  );
+}
   
   const handleGeocode = (address) => {
     const formattedAddress = address.replace(/ /g, "+");

@@ -2,9 +2,9 @@ body{
     // background: $color_60;
     
     // color: white;
-    // @include Larges{
-    //     background-image: linear-gradient(to right, $color_60 50%, $color_50 50%);
-    // };
+    @include _lg{
+        background-image: linear-gradient(to right, $_bg_color_3 50%, $_bg_color_1 50%);
+    };
 }
 
 #page{
@@ -20,13 +20,26 @@ body{
 
     main{
         // border: solid 3px red;
+        box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.2);
         height: 100%;
         padding: 20px;
         overflow: auto;
         position: relative;
 
+        @include _lg{
+            padding: 40px;
+        }
+
         h2{
             text-transform: capitalize;
+            // font-weight: 600;
+            font-size: 18px;
+        }
+        .titre_page{
+            text-transform: capitalize;
+            font-weight: 600;
+            font-size: 26px;
+            margin-bottom: 20px;
         }
         // .main_content{
         //     min-height: 100%;
