@@ -17,7 +17,7 @@ export default function UserDashboard() {
   // ROUTES-TEST start
   const [showComposant, setShowComposant] = useState("calendrier");
   const [showPage, setShowPage] = useState();
-  const [titrePage, setTitrePage] = useState("Calendrier");
+  const [titrePage, setTitrePage] = useState("Calendar");
   const route = [
     { path: "profil", composant: <ProfilPage /> },
     { path: "calendrier", composant: <Calendrie /> },
@@ -37,7 +37,7 @@ export default function UserDashboard() {
         setTitrePage(window.location.hash.split("/")[1]);
       } else {
         setShowPage(route.find((e) => e.path === "calendrier").composant);
-        setTitrePage("calendrier");
+        setTitrePage("calendar");
       }
     } else {
       setShowPage(route.find((e) => e.path === composant).composant);
@@ -115,19 +115,19 @@ function SideBar(props) {
             <h3>MENU</h3>
             <li onClick={handleClick}>
               <a onClick={() => handleClickPage("calendrier")}>
-                <i className="fa-regular fa-calendar-days"></i> Calendrier
+                <i className="fa-regular fa-calendar-days"></i> Calendar
               </a>
             </li>
 
             <li onClick={handleClick}>
               <a onClick={() => handleClickPage("adresse")}>
-                <i className="fa-solid fa-gears"></i> Adresse
+                <i className="fa-solid fa-gears"></i> Adress
               </a>
             </li>
 
             <li onClick={handleClick}>
               <a onClick={() => handleClickPage("historique")}>
-                <i className="bx bx-history"></i> Historique
+                <i className="bx bx-history"></i> History
               </a>
             </li>
           </ul>
@@ -176,7 +176,7 @@ function Header(props) {
         <div className="header_content_profil">
           <div className="infos">
             <span className="nom">{nom}</span>
-            <span className="role">User</span>
+            <span className="role">Employee</span>
           </div>
           <a className="photo_profil">
             <img
@@ -241,7 +241,7 @@ function Adresse(props) {
             }
           )
           .then((response) => {
-            alert("Adresse modifiée avec succès");
+            alert("Address successfully modified");
             // window.location.reload();
           })
           .catch((error) => {
@@ -258,7 +258,7 @@ function Adresse(props) {
     <div className="adresse">
       <div className="adresse_details_item">
         <p>
-          <span>Adresse actuelle: &nbsp; </span>
+          <span>Current address: &nbsp; </span>
           {infosUser.homeAdress}
         </p>
       </div>
@@ -268,9 +268,9 @@ function Adresse(props) {
           type="text"
           value={adresse}
           onChange={handleAdresseChange}
-          placeholder="Actuallise votre adresse"
+          placeholder="Update your adress"
         />
-        <button type="submit">Modifier</button>
+        <button type="submit">Update</button>
       </form>
     </div>
   );
@@ -596,7 +596,7 @@ function Calendrie() {
                 value={"true"}
                 onChange={handleWorkedChange}
               />
-              Oui
+              Yes
             </label>
             <br />
             <label>
@@ -607,7 +607,7 @@ function Calendrie() {
                 value={"false"}
                 onChange={handleWorkedChange}
               />
-              Non
+              No
             </label>
           </label>
           <br />
@@ -644,7 +644,7 @@ function Calendrie() {
 
           <br />
           <br />
-          <button className="btn">envoyer</button>
+          <button className="btn">Send</button>
         </form>
       </div>
 

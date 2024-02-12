@@ -12,7 +12,7 @@ export default function AdminDashboard() {
     // ROUTES-TEST start
     const [showComposant, setShowComposant] = useState("users");
     const [showPage, setShowPage] = useState();
-    const [ titrePage, setTitrePage] = useState("users")
+    const [ titrePage, setTitrePage] = useState("Employees")
     
     const route = [
         {path: "users", composant: <Users />},
@@ -26,7 +26,7 @@ export default function AdminDashboard() {
                 setTitrePage(window.location.hash.split('/')[1])
             }else{
                 setShowPage(route.find(e => e.path === "users").composant)
-                setTitrePage("users")
+                setTitrePage("Employees")
             }
         } else {
             setShowPage(route.find(e => e.path === composant).composant)
@@ -101,13 +101,13 @@ function SideBar(props){
                 <h3>MENU</h3>
                     <li onClick={handleClick}>
                         <a onClick={() => handleClickPage("users")}>
-                            <i className="fa-solid fa-users"></i> Utilisateurs
+                            <i className="fa-solid fa-users"></i> Employees
                         </a>
                     </li>
 
                     <li onClick={handleClick}>
                         <a onClick={() => handleClickPage("adresses")}>
-                            <i className="fa-solid fa-gears"></i> Adresses
+                            <i className="fa-solid fa-gears"></i> Clients adresses
                         </a>
                     </li>
                 </ul>
@@ -162,7 +162,7 @@ function Header(props){
         <div className="header_content_profil">
             <div className='infos'>
                 <span className='nom'>{nom}</span>
-                <span className='role'>Admin, RH</span>
+                <span className='role'>Admin, HR</span>
             </div>
             <a className='photo_profil click_none'>
                 <img src={photo} alt="photo profil" />
@@ -217,8 +217,8 @@ function Users(){
                     return <tr key={index} onClick={()=>modalUser(user.$id)}>
                             <td>{user.firstName}</td>
                             <td>{user.lastName}</td>
-                            <td>Employé</td>
-                            {user.eligible ? <td style={{color: 'green'}}>eligible</td> : <td style={{color: 'red'}}>non eligible</td>}
+                            <td>Employee</td>
+                            {user.eligible ? <td style={{color: 'green'}}>Eligible</td> : <td style={{color: 'red'}}>Not eligible</td>}
                         </tr>
                 }))
             }
@@ -237,8 +237,8 @@ function Users(){
             return <tr key={index} onClick={()=> modalUser(user.$id)}>
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
-                    <td>Employé</td>
-                    {user.eligible ? <td style={{color: 'green'}}>eligible</td> : <td style={{color: 'red'}}>non eligible</td>}
+                    <td>Employee</td>
+                    {user.eligible ? <td style={{color: 'green'}}>Eligible</td> : <td style={{color: 'red'}}>Not eligible</td>}
                 </tr>
         }))
     }
@@ -269,16 +269,16 @@ function Users(){
             </div>
 
             <div className="search">
-                <input type="text" placeholder='Recherche' value={recherche} onChange={handleChange} />
+                <input type="text" placeholder='Search' value={recherche} onChange={handleChange} />
             </div>
 
             <table>
             <thead>
                 <tr>
-                <th>Prénom</th>
-                <th>Nom</th>
+                <th>First name</th>
+                <th>Last name</th>
                 <th>Role</th>
-                <th>Éligibilité</th>
+                <th>Eligibility</th>
                 </tr>
             </thead>
 
@@ -356,13 +356,13 @@ function Adresse(){
                 <input type="text" placeholder='Recherche' value={recherche} onChange={handleChange} />
             </div>
 
-            <button onClick={handleClickModal}>Ajouter une nouvelle adresse</button>
+            <button onClick={handleClickModal}>Add a new adress</button>
 
             <table>
                 <thead>
                     <tr>
-                        <th>Adresse</th>
-                        <th>Client</th>
+                        <th>Adress</th>
+                        <th>Client name</th>
                     </tr>
                 </thead>
 
@@ -416,7 +416,7 @@ function Modal(props) {
             if (listHistorique == null) {
                 setShowHistorique(
                         <div className="historique_item">
-                            <p>Aucun adresse dans la liste</p>
+                            <p>No address in the list</p>
                         </div>
                     )
             }else{
@@ -427,7 +427,7 @@ function Modal(props) {
                             <div key={index} className="historique_item">
                                 <p>{date.clientAdress}</p>
                                 <p>{dateObj}</p>
-                                {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>non eligible</p>}
+                                {date.eligible ? <p style={{color: 'green'}}>Eligible</p> : <p style={{color: 'red'}}>Not eligible</p>}
                             </div>
                             )
                     })
@@ -455,29 +455,29 @@ function Modal(props) {
                         <img src={props.user.profile_picture} alt="photo profil" />
                     </div>
 
-                    <button className='btn_off_modal' onClick={handleClickOffModal}>Fermer</button>
+                    <button className='btn_off_modal' onClick={handleClickOffModal}>Close</button>
 
                     <div className="ProfilPage_content_details">
                         <div className="ProfilPage_content_details_item">
                             <h2>{props.user.firstName} {props.user.lastName}</h2>
                         </div>
                         <div className="ProfilPage_content_details_item">
-                            <p>Employer</p> <span className='line'></span> 
-                            {props.user.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>non eligible</p>}  
+                            <p>Employee</p> <span className='line'></span> 
+                            {props.user.eligible ? <p style={{color: 'green'}}>Eligible</p> : <p style={{color: 'red'}}>Not eligible</p>}  
                         </div>
                         <div className="ProfilPage_content_details_item">
-                            <p><span>Adresse: &nbsp; </span>{props.user.homeAdress}</p>
+                            <p><span>Adress: &nbsp; </span>{props.user.homeAdress}</p>
                         </div>
                         <div className="ProfilPage_content_details_item">
                             <p><span>Email: &nbsp; </span>email@email.com</p>
                         </div>
                         <div className="ProfilPage_content_details_item">
-                            <p><span>GSM: &nbsp; </span>0000.000.000.000</p>
+                            <p><span>Phone &nbsp; </span>0000.000.000.000</p>
                         </div>
                     </div>
 
                     <div className="historique">
-                        <button onClick={handleHistorique}>Historique:</button>
+                        <button onClick={handleHistorique}>History:</button>
                         <div className="historique_items">
                             {showHistorique}
                         </div>
@@ -508,7 +508,7 @@ function ModalAdresse(props) {
         e.preventDefault()
 
         if (newAdress === "" || newAdressClient === "") {
-            alert("Veuillez remplir tous les champs")
+            alert("Please complete all fields")
         } else {
             if (geo === "") {
                 const formattedAddress = newAdress.replace(/ /g, "+");
@@ -533,11 +533,11 @@ function ModalAdresse(props) {
                             }
                         ).then((response) => {
                             console.log(response);
-                            alert("document created");
+                            alert("Client created");
                             window.location.reload();
                             }
                         ).catch((error) => {
-                            console.error("document no created " + error);
+                            console.error("Client not created " + error);
                         });
                     })
                     .catch((error) => {
@@ -553,13 +553,13 @@ function ModalAdresse(props) {
 
     return (
         <div className="show_modal_adresse">
-            <button className='btn_off_modal' onClick={handleClickOffModal}>Fermer</button>
+            <button className='btn_off_modal' onClick={handleClickOffModal}>Close</button>
             <form >
                 <div className='ProfilPage'>
                     <div className="ProfilPage_content">
                         <div className="ProfilPage_content_details">
                             <div className="ProfilPage_content_details_item">
-                                <h2>Ajouter une nouvelle adresse</h2>
+                                <h2>Add a new adress</h2>
                             </div>
                             <div className="ProfilPage_content_details_item">
                                 <input type="text" name='adresse' placeholder='Adresse' value={newAdress} onChange={handleChangeAdress} />
@@ -568,7 +568,7 @@ function ModalAdresse(props) {
                                 <input type="text" name='client' placeholder='Client' value={newAdressClient} onChange={handleChangeAdressClient} />
                             </div>
                             <div className="ProfilPage_content_details_item">
-                                <button onClick={handleSubmite}>Ajouter</button>
+                                <button onClick={handleSubmite}>Add</button>
                             </div>
                         </div>
                     </div>
