@@ -1,0 +1,56 @@
+import { account } from "../../../../appwrite/config";
+import { useNavigate } from 'react-router';
+
+export default function SideBar(props){
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        props.isMenuOpenOrClouse()
+    }
+
+    const handleClickPage = (page) => {
+        props.changeComposant(page);
+    }
+
+    const handleDeleteSession = async () => {
+        console.log("test");
+        await account.deleteSession('current');
+        navigate('/login')
+    }
+
+    return(
+    <aside className='bg_color_3 aside_off'>
+        <div className="slideBar">
+            <div className='logo'>
+                <img src="../public/assets/logo.png" alt="logo" />
+            </div>
+            
+            <i onClick={handleClick} className="fa-solid fa-chevron-left btn_off_slideBar"></i>
+
+            <nav>
+                <ul>
+                <h3>MENU</h3>
+                    <li onClick={handleClick}>
+                        <a onClick={() => handleClickPage("employees")}>
+                            <i className="fa-solid fa-users"></i> Employees
+                        </a>
+                    </li>
+
+                    <li onClick={handleClick}>
+                        <a onClick={() => handleClickPage("adresses")}>
+                            <i className="fa-solid fa-gears"></i> Clients adresses
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div className="btn_logout">
+                <a onClick={() => handleDeleteSession()}> 
+                    <i className="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+    </aside>
+    )
+}
