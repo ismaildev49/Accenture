@@ -2,7 +2,7 @@
 
 
 .login-body{
-	background-color: $_bg_color_3;
+	background-color: $_bg_color_1;
 	overflow: hidden;
 	// height: 100%;
     .container {
@@ -52,7 +52,7 @@
 .screen__background__shape1 {
 	height: 520px;
 	width: 520px;
-	background: #FFF;	
+	background: $_bg_color_1;
 	top: -50px;
 	right: 120px;	
 	border-radius: 0 72px 0 0;
@@ -68,6 +68,7 @@
 }
 
 .screen__background__shape3 {
+
 	height: 540px;
 	width: 190px;
 	background: linear-gradient(270deg, #5D54A4, #6A679E);
