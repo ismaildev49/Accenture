@@ -22,10 +22,10 @@ export default function History() {
                     let dateObj = date.date.split('T')[0]
                     return (
                         <div key={index} className="historique_item">
-                        <p>{date.clientAdress}</p>
-                        <p>{dateObj}</p>
-                        {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>not eligible</p>}
-                    </div>
+                            <p>{date.clientAdress}</p>
+                            <p>{dateObj}</p>
+                            {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>not eligible</p>}
+                        </div>
                     );
                 })
             );
@@ -49,7 +49,14 @@ export default function History() {
 
     return (
     <div className="historique">
-        <div className="historique_items">{listHistorique}</div>
+        <div className="historique_items">
+            <div className="historique_item historique_item_titre">
+                <p>Name :</p>
+                <p>Date :</p>
+                <p>FMB :</p>
+            </div>
+            {listHistorique}
+        </div>
     </div>
     );
 }

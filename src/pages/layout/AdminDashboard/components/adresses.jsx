@@ -32,6 +32,7 @@ export default function Adresses() {
               <tr key={index}>
                 <td>{adresse.fullAdress}</td>
                 <td>{adresse.clientName}</td>
+            <td onClick={()=>{handleDelete(adresse.$id)}} className='btn_delete_adress'><i className="fa-solid fa-trash"></i></td>
               </tr>
             );
           })
@@ -57,6 +58,7 @@ export default function Adresses() {
           <tr key={index}>
             <td>{adresse.fullAdress}</td>
             <td>{adresse.clientName}</td>
+            <td onClick={()=>{handleDelete(adresse.$id)}} className='btn_delete_adress'><i className="fa-solid fa-trash"></i></td>
           </tr>
         );
       })
@@ -67,6 +69,22 @@ export default function Adresses() {
     console.log("modal");
     setModal(<ModalAdresse closeModal={setModal} />);
   };
+
+  const handleDelete = async (e) => {
+    confirm('Are you sure you want to delete this adress?') ? 
+    await database.deleteDocument(
+      import.meta.env.VITE_APP_DB_ID, 
+      import.meta.env.VITE_APP_ADRESSES_COLLECTION_ID, 
+      e
+    ).then(response => {
+      // console.log(response);
+      alert('Adress deleted')
+      window.location.reload()
+    }).catch(error => {
+      alert('Error deleting adress')
+      console.error('Error deleting adress:', error);
+    }) : console.log('no');
+  }
 
   useEffect(() => {
     fetchData();
@@ -84,13 +102,14 @@ export default function Adresses() {
         />
       </div>
 
-      <button onClick={handleClickModal}>Add a new adress</button>
+      <button className="add_new_adress" onClick={handleClickModal}>Add a new adress</button>
 
       <table>
         <thead>
           <tr>
             <th>Adress</th>
             <th>Client name</th>
+            <th>Delete</th>
           </tr>
         </thead>
 
@@ -196,7 +215,7 @@ function ModalAdresse(props) {
                 />
               </div>
               <div className="ProfilPage_content_details_item">
-                <button onClick={handleSubmite}>Add</button>
+                <button className="add_new_adress" onClick={handleSubmite}>Add</button>
               </div>
             </div>
           </div>

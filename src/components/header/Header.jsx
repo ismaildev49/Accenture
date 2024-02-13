@@ -8,7 +8,7 @@ const Header = () => {
           </div>
           <div className="header__right">
             <div className="header__right__item">
-              <a className="btn"href="/login">LOGIN</a>
+              {/* <a className="btn"href="/login">LOGIN</a> */}
             </div>
           </div>
         </div>

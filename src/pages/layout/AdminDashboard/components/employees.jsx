@@ -104,6 +104,7 @@ export default function Employees(){
 
 function Modal(props) {
     const [showHistorique, setShowHistorique] = useState([])
+    const [showHistoriqueTitre, setShowHistoriqueTitre] = useState(false)
     const [listHistorique, setListHistorique] = useState([])
 
     function fetchData() {
@@ -131,14 +132,17 @@ function Modal(props) {
     }
 
     const handleHistorique = () => {
+        console.log("history");
         if (showHistorique.length === 0) {
             if (listHistorique == null) {
+                setShowHistoriqueTitre(false)
                 setShowHistorique(
                         <div className="historique_item">
                             <p>No address in the list</p>
                         </div>
                     )
             }else{
+                setShowHistoriqueTitre(true)
                 setShowHistorique(
                     listHistorique.map((date, index) => {
                         let dateObj = date.date.split('T')[0]
@@ -152,6 +156,9 @@ function Modal(props) {
                     })
                 )
             }
+        }else{
+            setShowHistoriqueTitre(false)
+            setShowHistorique([])
         }
     }
 
@@ -189,8 +196,16 @@ function Modal(props) {
                     </div>
 
                     <div className="historique">
-                        <button onClick={handleHistorique}>History:</button>
+                        <button onClick={() => handleHistorique()}>History:</button>
                         <div className="historique_items">
+                            {
+                                showHistoriqueTitre ? 
+                                <div className="historique_item historique_item_titre">
+                                    <p>Name :</p>
+                                    <p>Date :</p>
+                                    <p>FMB :</p>
+                                </div> : ""
+                            }
                             {showHistorique}
                         </div>
                     </div>

@@ -108,37 +108,6 @@ button {
   cursor: pointer;
 }
 
-.btn {
-  background-color: #bd00ff;
-  border-radius: 8px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  height: 40px;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  outline: none;
-  padding: 10px 16px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: color 100ms;
-  vertical-align: baseline;
-  -moz-user-select: none;
-       user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-.btn:hover {
-  background-color: #F082AC;
-}
-
 .header {
   height: 20vh;
   max-width: 1440px;
@@ -173,6 +142,52 @@ button {
   justify-content: center;
   align-items: center;
   gap: 50px;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .hero .container .hero-title {
+    font-size: 60px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .hero .container .hero-subtitle {
+    font-size: 25px;
+  }
+}
+.hero .container .btn {
+  background-color: #bd00ff;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.hero .container .btn:hover {
+  background-color: #F082AC;
+}
+@media screen and (min-width: 768px) {
+  .hero .container .btn {
+    font-size: 25px;
+  }
 }
 
 .login-body {
@@ -560,16 +575,21 @@ aside .slideBar .btn_logout a:hover {
   text-align: left;
   padding: 20px 10px 20px 32px;
   margin-right: 3px;
+  display: flex;
+  align-items: center;
 }
 .list_users table tr, .list_adresses table tr {
   margin: 0 0 2px 0;
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: start;
-  flex-direction: row;
+}
+.list_users table tr:hover td, .list_adresses table tr:hover td {
+  background-color: #f1f5f9;
+  color: rgba(28, 36, 52, 0.4);
 }
 .list_users table tr th, .list_adresses table tr th {
+  flex: 3;
   font-weight: 400;
 }
 .list_users table tr th:last-child, .list_users table tr td:last-child, .list_adresses table tr th:last-child, .list_adresses table tr td:last-child {
@@ -587,15 +607,40 @@ aside .slideBar .btn_logout a:hover {
   width: 100%;
 }
 .list_users table tbody td, .list_adresses table tbody td {
+  flex: 3;
   font-size: 16px;
+}
+.list_users table tbody td.btn_delete_adress, .list_adresses table tbody td.btn_delete_adress {
+  color: red;
+  cursor: pointer;
+}
+.list_users table tbody td.btn_delete_adress i, .list_adresses table tbody td.btn_delete_adress i {
+  margin: 0 auto;
+  font-size: 18px;
+}
+@media screen and (min-width: 768px) {
+  .list_users table tbody td.btn_delete_adress i, .list_adresses table tbody td.btn_delete_adress i {
+    font-size: 25px;
+  }
+}
+.list_users table tbody td.btn_delete_adress:hover, .list_adresses table tbody td.btn_delete_adress:hover {
+  background-color: red;
+  color: white;
+}
+
+.list_adresses table thead tr th:last-child {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.list_adresses tbody td:last-child {
+  flex: 1;
+  padding: 0;
 }
 
 .list_users table tbody tr {
   cursor: pointer;
-}
-.list_users table tbody tr:hover td {
-  background-color: #f1f5f9;
-  color: rgba(28, 36, 52, 0.4);
 }
 
 .list_adresses button {
@@ -609,6 +654,10 @@ aside .slideBar .btn_logout a:hover {
   transition: 300ms;
 }
 .list_adresses button:hover {
+  background-color: #f1f5f9;
+  color: #1c2434;
+}
+.list_adresses .add_new_adress {
   background-color: #1c2434;
   color: white;
 }
@@ -701,6 +750,9 @@ aside .slideBar .btn_logout a:hover {
 .historique_items .historique_item:nth-child(odd) p {
   background-color: #f1f5f9;
 }
+.historique_items .historique_item_titre p {
+  font-weight: 700;
+}
 
 .calendrier {
   position: relative;
@@ -745,6 +797,10 @@ aside .slideBar .btn_logout a:hover {
 .calendrier .modal form .adressError, .calendrier .modal form .workedError {
   color: red;
   font-size: 14px;
+}
+
+.didntWork {
+  display: none;
 }
 
 .ProfilPage {
