@@ -201,7 +201,7 @@ function Modal(props) {
                             {
                                 showHistoriqueTitre ? 
                                 <div className="historique_item historique_item_titre">
-                                    <p>Name :</p>
+                                    <p>Adress client :</p>
                                     <p>Date :</p>
                                     <p>FMB :</p>
                                 </div> : ""
