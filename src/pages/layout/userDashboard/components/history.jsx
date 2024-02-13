@@ -20,13 +20,23 @@ export default function History() {
             setListHistorique(
                 response.documents.map((date, index) => {
                     let dateObj = date.date.split('T')[0]
-                    return (
-                        <div key={index} className="historique_item">
-                            <p>{date.clientAdress}</p>
-                            <p>{dateObj}</p>
-                            {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>not eligible</p>}
-                        </div>
-                    );
+                    if (date.clientAdress === "didn't work") {
+                        return (
+                            <div key={index} className="historique_item">
+                                <p>{date.clientAdress}</p>
+                                <p>{dateObj}</p>
+                                <p>---</p>
+                            </div>
+                        );
+                    }else{
+                        return (
+                            <div key={index} className="historique_item">
+                                <p>{date.clientAdress}</p>
+                                <p>{dateObj}</p>
+                                {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>not eligible</p>}
+                            </div>
+                        );
+                    }
                 })
             );
             } else {

@@ -146,13 +146,24 @@ function Modal(props) {
                 setShowHistorique(
                     listHistorique.map((date, index) => {
                         let dateObj = date.date.split('T')[0]
+                        
+                    if (date.clientAdress === "didn't work") {
                         return (
                             <div key={index} className="historique_item">
                                 <p>{date.clientAdress}</p>
                                 <p>{dateObj}</p>
-                                {date.eligible ? <p style={{color: 'green'}}>Eligible</p> : <p style={{color: 'red'}}>Not eligible</p>}
+                                <p>---</p>
                             </div>
-                            )
+                        );
+                    }else{
+                        return (
+                            <div key={index} className="historique_item">
+                                <p>{date.clientAdress}</p>
+                                <p>{dateObj}</p>
+                                {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>not eligible</p>}
+                            </div>
+                        );
+                    }
                     })
                 )
             }
