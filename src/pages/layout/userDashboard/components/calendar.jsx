@@ -21,6 +21,9 @@ export default function Calendar() {
   const [adressError, setAdressError] = useState("");
   const [dates, setDates] = useState([]);
 
+  const [accessSelectedAdress, setAccessSelectedAdress] = useState(true);
+  const [isWorkedOrNot, setIsWorkedOrNot] = useState(true);
+
   useEffect(() => {
     getDates();
     // console.log(" infosUser ------------> " + JSON.stringify(infosUser));
@@ -109,18 +112,20 @@ export default function Calendar() {
     document.querySelector(".modal").style.display = "flex";
   };
   const handleWorkedChange = (e) => {
-    
-
     const boolValue = e.target.value === "true";
 
     setWorked(() => boolValue);
 
     console.log("e.target.value", e.target.value);
 
-    if (e.target.value == false) {
-    console.log("workedtargetvalue :", e.target.value);  
-      setSelectedAdress("didn't work");
-      document.querySelector("#adress").classList.add("didntWork");
+    setIsWorkedOrNot(!isWorkedOrNot);
+
+    if (isWorkedOrNot) {
+      setAccessSelectedAdress(false);
+      console.log("enabled");
+    }else{
+      setAccessSelectedAdress(true);
+      console.log("disabled");
     }
 
     setWorkedError("");
@@ -269,7 +274,8 @@ export default function Calendar() {
             Where did you work on {date} ?
             <div className="adressError">{adressError}</div>
             <br />
-            <select
+            <select 
+              disabled={accessSelectedAdress}
               name="adress"
               id="adress"
               defaultValue={""}
