@@ -32,7 +32,10 @@ export default function Calendar() {
   useEffect(() => {
     if (dates.length > 0) {
       console.log("dates :", dates);
-      console.log("isEligible(dates) :", isEligible(dates));
+      console.log(
+        "isEligible(dates) :",
+        isEligible(dates.filter((date) => date.worked === true))
+      );
       updateEligibility();
     }
 
@@ -45,7 +48,7 @@ export default function Calendar() {
         import.meta.env.VITE_APP_USER_COLLECTION_ID,
         infosUser.$id,
         {
-          eligible: isEligible(dates),
+          eligible: isEligible(dates.filter((date) => date.worked === true)),
         }
       );
     } catch (error) {
@@ -118,14 +121,12 @@ export default function Calendar() {
 
     console.log("e.target.value", e.target.value);
 
-    setIsWorkedOrNot(!isWorkedOrNot);
-
-    if (isWorkedOrNot) {
+    if (e.target.value === "true") {
+      setIsWorkedOrNot(false);
       setAccessSelectedAdress(false);
-      console.log("enabled");
-    }else{
+    }else if (e.target.value === "false"){
+      setIsWorkedOrNot(true);
       setAccessSelectedAdress(true);
-      console.log("disabled");
     }
 
     setWorkedError("");
@@ -163,7 +164,33 @@ export default function Calendar() {
       // Display error message for each missing field
       if (!selectedAdress) {
         // Show error for selectedAdress
-        setAdressError("Please select an adress");
+        if (worked === false) {
+          setAdressError("");
+          try {
+            await database
+              .createDocument(
+                import.meta.env.VITE_APP_DB_ID,
+                import.meta.env.VITE_APP_DATES_COLLECTION_ID,
+                "unique()",
+                {
+                  date: date,
+                  clientAdress:"didn't work",
+                  worked: worked,
+                  user: infosUser.$id,
+                  eligible: false,
+                }
+              )
+              .then((response) => {
+                console.log("response :", response);
+                alert("Data sent");
+                window.location.reload();
+              });
+          } catch (error) {
+            console.log("error while creating document in date table :", error);
+          }
+        } else {
+          setAdressError("Please select an adress");
+        }
       }
       if (worked !== true && worked !== false) {
         // Show error for worked
@@ -274,7 +301,7 @@ export default function Calendar() {
             Where did you work on {date} ?
             <div className="adressError">{adressError}</div>
             <br />
-            <select 
+            <select
               disabled={accessSelectedAdress}
               name="adress"
               id="adress"
@@ -324,11 +351,20 @@ export default function Calendar() {
             end: "", // will normally be on the right. if RTL, will be on the left
           }}
           events={dates.map((date) => {
-            return {
-              title: date.clientAdress,
-              date: date.date,
-              color: date.eligible ? "green" : "red",
-            };
+            if (date.clientAdress === "didn't work"){
+              return {
+                title: "didn't work",
+                date: date.date,
+                color: "grey",
+              };
+            } else {
+              return {
+                title: date.clientAdress,
+                date: date.date,
+                color: date.eligible ? "green" : "red",
+              };
+            }
+            
           })}
           // locale='fr'
           selectable={true}
