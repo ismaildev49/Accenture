@@ -24,7 +24,7 @@ export default function History() {
                         <div key={index} className="historique_item">
                         <p>{date.clientAdress}</p>
                         <p>{dateObj}</p>
-                        {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>non eligible</p>}
+                        {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>not eligible</p>}
                     </div>
                     );
                 })
@@ -32,7 +32,7 @@ export default function History() {
             } else {
             setListHistorique(
                 <div className="historique_item">
-                <p>Aucun adresse dans la liste</p>
+                <p>No adress in the list</p>
                 </div>
             );
             }

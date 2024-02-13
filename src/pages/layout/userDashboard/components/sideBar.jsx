@@ -44,7 +44,7 @@ export default function SideBar(props) {
                 </li>
 
                 <li onClick={handleClick}>
-                    <a onClick={() => handleClickPage("historique")}>
+                    <a onClick={() => handleClickPage("history")}>
                     <i className="bx bx-history"></i> History
                     </a>
                 </li>

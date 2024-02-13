@@ -17,18 +17,18 @@ export default function ProfilPage() {
                         <h2>{infosUser.firstName} {infosUser.lastName}</h2>
                     </div>
                     <div className="ProfilPage_content_details_item">
-                        <p>Employer</p> <span className='line'></span> 
-                        {infosUser.eligible ? <p style={{color: 'green'}}>eligible pour le FMB</p> : 
-                        <p style={{color: 'red'}}>non eligible pour le FMB</p>}
+                        <p>Employee</p> <span className='line'></span> 
+                        {infosUser.eligible ? <p style={{color: 'green'}}>Eligible for the FMB</p> : 
+                        <p style={{color: 'red'}}>Not eligible for the FMB</p>}
                     </div>
                     <div className="ProfilPage_content_details_item">
-                        <p><span>Adresse: &nbsp; </span>{infosUser.homeAdress}</p>
+                        <p><span>Adress: &nbsp; </span>{infosUser.homeAdress}</p>
                     </div>
                     <div className="ProfilPage_content_details_item">
-                        <p><span>Email: &nbsp; </span>email@email.com</p>
+                        <p><span>Email: &nbsp; </span>{infosUser.email}</p>
                     </div>
                     <div className="ProfilPage_content_details_item">
-                        <p><span>GSM: &nbsp; </span>0000.000.000.000</p>
+                        <p><span>Phone: &nbsp; </span>{infosUser.phone}</p>
                     </div>
         </div>
         </div>

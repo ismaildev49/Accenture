@@ -24,7 +24,7 @@ export default function UserDashboard() {
       path: "adresse",
       composant: <Adresse changeComposant={changeComposant} />,
     },
-    { path: "historique", composant: <History /> },
+    { path: "history", composant: <History /> },
   ];
   function changeComposant(composant = "") {
     if (composant == "") {

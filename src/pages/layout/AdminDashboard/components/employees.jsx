@@ -181,10 +181,10 @@ function Modal(props) {
                             <p><span>Adress: &nbsp; </span>{props.user.homeAdress}</p>
                         </div>
                         <div className="ProfilPage_content_details_item">
-                            <p><span>Email: &nbsp; </span>email@email.com</p>
+                            <p><span>Email: &nbsp; </span>{props.user.email}</p>
                         </div>
                         <div className="ProfilPage_content_details_item">
-                            <p><span>Phone &nbsp; </span>0000.000.000.000</p>
+                            <p><span>Phone: &nbsp; </span>{props.user.phone}</p>
                         </div>
                     </div>
 
