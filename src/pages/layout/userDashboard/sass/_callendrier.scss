@@ -10,8 +10,12 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
+.fc-event-time{
+    display: none;
+}
+
 .fc-col-header-cell{
-    background-color: #3c50e0;
+    background-color: $_bg_color_3;
     color: $_text_color_1;
     font-size: 20px;
     height: 50px;

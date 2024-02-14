@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,500;8..144,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
 .bg_color_1 {
   background-color: white;
@@ -108,6 +109,61 @@ button {
   cursor: pointer;
 }
 
+.logo_creer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 10px;
+}
+.logo_creer .fa-location-dot {
+  position: absolute;
+  top: -25px;
+  left: 43%;
+  font-size: 2rem;
+  color: goldenrod;
+}
+@media screen and (min-width: 768px) {
+  .logo_creer .fa-location-dot {
+    left: 44%;
+    font-size: 2.2rem;
+  }
+}
+.logo_creer .protest-strike-regular, .logo_creer .protest-strike-regular span {
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
+  color: #bd00ff;
+  line-height: 20px;
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .logo_creer .protest-strike-regular, .logo_creer .protest-strike-regular span {
+    line-height: 24px;
+  }
+}
+.logo_creer .logo_creer_big_test {
+  font-size: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .logo_creer .logo_creer_big_test {
+    font-size: 2.5rem;
+  }
+}
+.logo_creer .logo_creer_big_test span {
+  color: #1c2434;
+}
+.logo_creer .logo_creer_big_subtest {
+  font-size: 1rem;
+  padding: 0 2px;
+  color: goldenrod;
+}
+@media screen and (min-width: 768px) {
+  .logo_creer .logo_creer_big_subtest {
+    font-size: 1.2rem;
+  }
+}
+
 .header {
   height: 20vh;
   max-width: 1440px;
@@ -119,9 +175,6 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.header .container .logo img {
-  width: 155px;
 }
 
 .home-body {
@@ -473,11 +526,10 @@ aside .slideBar {
 }
 aside .slideBar .logo {
   align-self: flex-start;
-  padding: 15px 30px;
+  padding: 20px 30px 15px;
 }
-aside .slideBar .logo img {
-  margin: 0 auto;
-  width: 150px;
+aside .slideBar .logo .logo_creer_big_test span {
+  color: #f1f5f9;
 }
 aside .slideBar nav {
   width: 100%;
@@ -511,6 +563,7 @@ aside .slideBar nav ul li a:hover {
   color: rgba(28, 36, 52, 0.4);
 }
 aside .slideBar nav ul li a i {
+  color: goldenrod;
   width: 30px;
 }
 aside .slideBar .btn_logout {
@@ -527,6 +580,7 @@ aside .slideBar .btn_logout a {
   letter-spacing: 0.5px;
 }
 aside .slideBar .btn_logout a i {
+  color: goldenrod;
   width: 30px;
 }
 aside .slideBar .btn_logout a:hover {
@@ -589,8 +643,12 @@ aside .slideBar .btn_logout a:hover {
   color: rgba(28, 36, 52, 0.4);
 }
 .list_users table tr th, .list_adresses table tr th {
-  flex: 3;
-  font-weight: 400;
+  font-weight: 500;
+}
+@media screen and (min-width: 768px) {
+  .list_users table tr th, .list_adresses table tr th {
+    flex: 3;
+  }
 }
 .list_users table tr th:last-child, .list_users table tr td:last-child, .list_adresses table tr th:last-child, .list_adresses table tr td:last-child {
   margin-right: 0;
@@ -607,8 +665,17 @@ aside .slideBar .btn_logout a:hover {
   width: 100%;
 }
 .list_users table tbody td, .list_adresses table tbody td {
-  flex: 3;
   font-size: 16px;
+}
+@media screen and (min-width: 768px) {
+  .list_users table tbody td, .list_adresses table tbody td {
+    flex: 3;
+  }
+}
+@media screen and (min-width: 768px) {
+  .list_users table tbody td, .list_adresses table tbody td {
+    font-size: 20px;
+  }
 }
 .list_users table tbody td.btn_delete_adress, .list_adresses table tbody td.btn_delete_adress {
   color: red;
@@ -629,14 +696,22 @@ aside .slideBar .btn_logout a:hover {
 }
 
 .list_adresses table thead tr th:last-child {
-  flex: 1;
   padding: 0;
   display: flex;
   justify-content: center;
 }
+@media screen and (min-width: 768px) {
+  .list_adresses table thead tr th:last-child {
+    flex: 1;
+  }
+}
 .list_adresses tbody td:last-child {
-  flex: 1;
   padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .list_adresses tbody td:last-child {
+    flex: 1;
+  }
 }
 
 .list_users table tbody tr {
@@ -926,8 +1001,12 @@ aside .slideBar .btn_logout a:hover {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
+.fc-event-time {
+  display: none;
+}
+
 .fc-col-header-cell {
-  background-color: #3c50e0;
+  background-color: #1c2434;
   color: white;
   font-size: 20px;
   height: 50px;

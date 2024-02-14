@@ -37,13 +37,19 @@ aside{
 
         .logo{
             align-self: flex-start;
-            padding: 15px 30px;
+            padding: 20px 30px 15px;
 
-            img{
-                // border: solid 1px red;
-                margin: 0 auto;
-                width: 150px;
+            .logo_creer_big_test{
+                span{
+                    color: $color_2;
+                }
             }
+
+            // img{
+            //     // border: solid 1px red;
+            //     margin: 0 auto;
+            //     width: 150px;
+            // }
         }
     
         nav{
@@ -74,7 +80,6 @@ aside{
                         font-size: 18px;
                         font-weight: 400;
                         letter-spacing: 0.5px;
-                        // color: $_text_color_3;
                         transition: 300ms;
                         &:hover{
                             background-color: $color_2_opos;
@@ -82,7 +87,7 @@ aside{
                         }
 
                         i{
-                            // border: solid 1px green;
+                            color: goldenrod;
                             width: 30px;
                         }
                     }
@@ -106,7 +111,10 @@ aside{
                 font-weight: 400;
                 letter-spacing: 0.5px;
 
-                i{width: 30px;}
+                i{
+                    color: goldenrod;
+                    width: 30px;
+                }
 
                 &:hover{
                     background-color: $color_2_opos;

@@ -23,7 +23,12 @@ export default function SideBar(props){
     <aside className='bg_color_3 aside_off'>
         <div className="slideBar">
             <div className='logo'>
-                <img src="../public/assets/logo.png" alt="logo" />
+                <div className="logo_creer">
+                    <i className="fa-solid fa-location-dot"></i>
+                    <span className="logo_creer_big_test protest-strike-regular">FMB <span>app</span></span>
+                    <span className="logo_creer_big_subtest protest-strike-regular">by accenture</span>
+                </div>
+                {/* <img src="../public/assets/logo.png" alt="logo" /> */}
             </div>
             
             <i onClick={handleClick} className="fa-solid fa-chevron-left btn_off_slideBar"></i>

@@ -60,6 +60,58 @@ button{
     cursor: pointer;
 }
 
+.logo_creer{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 10px;
+
+    .fa-location-dot{
+        position: absolute;
+        top: -25px;
+        left: 43%;
+        font-size: 2rem;
+        color: goldenrod;
+        
+        @include _md{
+            left: 44%;
+            font-size: 2.2rem;
+        }
+    }
+
+    .protest-strike-regular, .protest-strike-regular span {
+        font-family: "Protest Strike", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 1px;
+        color: $color_4;
+        // text-shadow: 0 0 5px #000;
+        line-height: 20px;
+        position: relative;
+        @include _md{
+            line-height: 24px;
+        }
+    }
+
+    .logo_creer_big_test{
+        font-size: 2rem;
+        @include _md{
+            font-size: 2.5rem;
+        }
+        span{
+            color: $color_3;
+        }
+    }
+    .logo_creer_big_subtest{
+        font-size: 1rem;
+        padding: 0 2px;
+        color: goldenrod;
+        @include _md{
+            font-size: 1.2rem;
+        }
+    }
+}
+
 // .btn{
 //     background-color: $_bg_color_4;
 //     border-radius: 8px;

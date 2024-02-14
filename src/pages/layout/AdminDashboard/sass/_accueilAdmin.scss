@@ -51,8 +51,10 @@
             }
 
             th{
-                flex: 3;
-                font-weight: 400;
+                @include _md{
+                    flex: 3;
+                }
+                font-weight: 500;
             }
             th:last-child, td:last-child{
                 margin-right: 0;
@@ -72,8 +74,13 @@
             width: 100%;
 
             td{
-                flex: 3;
+                @include _md{
+                    flex: 3;
+                }
                 font-size: 16px;
+                @include _md{
+                    font-size: 20px;
+                }
             }
 
             td.btn_delete_adress{
@@ -103,17 +110,22 @@
         thead{
             tr{
                 th:last-child{
-                flex: 1;
-                padding: 0;
-                display: flex;
-                justify-content: center;
+                // flex: 1;
+                    padding: 0;
+                    display: flex;
+                    justify-content: center;
+                    @include _md{
+                        flex: 1;
+                    }
                 }
             }
         }
     }
     tbody{
         td:last-child{
-            flex: 1;
+            @include _md{
+                flex: 1;
+            }
             padding: 0;
         }
     }

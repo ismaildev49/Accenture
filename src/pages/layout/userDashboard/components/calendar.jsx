@@ -78,9 +78,9 @@ export default function Calendar() {
     for (let i = 0; i < array.length; i++) {
       count = 0;
       test = array[i];
-      for (let j = 0; j < array[i].length; j++) {
+      for (let j = i; j < array.length; j++) {
         if (test.eligible !== null && array[i] !== null) {
-          if (array[i].eligible === true) {
+          if (array[j].eligible === true && test.clientAdress === array[j].clientAdress) {
             count++;
           }
         }
