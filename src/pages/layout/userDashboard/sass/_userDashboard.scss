@@ -51,14 +51,14 @@
             }
             .label_worked{
                 cursor: pointer;
+                background-color: $_bg_color_2;
                 display: flex;
                 padding: 5px 10px;
                 border: 1px solid #ccc;
                 font-size: 18px;
                 width: 100%;
                 &:hover{
-                    background-color: $_bg_color_3;
-                    color: goldenrod;
+                    background-color: $_bg_color_1;
                 }
             }
             .adressError, .workedError {

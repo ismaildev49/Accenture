@@ -882,6 +882,7 @@ aside .slideBar .btn_logout a:hover {
 }
 .calendrier .modal form .label_worked {
   cursor: pointer;
+  background-color: #f1f5f9;
   display: flex;
   padding: 5px 10px;
   border: 1px solid #ccc;
@@ -889,8 +890,7 @@ aside .slideBar .btn_logout a:hover {
   width: 100%;
 }
 .calendrier .modal form .label_worked:hover {
-  background-color: #1c2434;
-  color: goldenrod;
+  background-color: white;
 }
 .calendrier .modal form .adressError, .calendrier .modal form .workedError {
   color: red;
