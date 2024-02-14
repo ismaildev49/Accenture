@@ -476,12 +476,9 @@ aside {
   top: 0;
   z-index: 10000;
   height: 100vh;
-  width: 280px;
-  background-color: white;
 }
 @media screen and (min-width: 1024px) {
   aside {
-    background-color: white;
     position: inherit;
     width: 350px;
   }
@@ -501,6 +498,7 @@ aside .btn_off_slideBar {
 }
 aside .slideBar {
   height: 100%;
+  width: 280px;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -572,7 +570,11 @@ aside .slideBar .btn_logout a:hover {
 }
 
 .aside_on {
+  background-color: rgba(28, 36, 52, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   left: 0;
+  right: 0;
   transition: 500ms;
 }
 

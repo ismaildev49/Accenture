@@ -4,11 +4,12 @@ aside{
         top: 0;
         z-index: 10000;
     height: 100vh;
-    width: 280px;
-    background-color: $_bg_color_1;
+    // width: 280px;
+    // background-color: $_bg_color_2_opos;
+
 
     @include _lg{
-        background-color: $_bg_color_1;
+        // background-color: $_bg_color_1;
         position: inherit;
         width: 350px;
     }
@@ -28,7 +29,9 @@ aside{
 
     .slideBar{
         // border: solid 1px green;
+        
         height: 100%;
+        width: 280px;
         display: flex;
             justify-content: start;
             align-items: center;
@@ -139,7 +142,11 @@ aside{
 
 
 .aside_on{
+    background-color: $_bg_color_3_opos;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     left: 0;
+    right: 0;
     transition: 500ms;
 }
 .aside_off{

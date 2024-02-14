@@ -20,8 +20,8 @@ export default function SideBar(props) {
     };
 
     return(
-    <aside className='bg_color_3 aside_off'>
-        <div className="slideBar">
+    <aside className='aside_off'>
+        <div className="slideBar bg_color_3">
             <div className='logo'>
                 <div className="logo_creer">
                     <i className="fa-solid fa-location-dot"></i>
