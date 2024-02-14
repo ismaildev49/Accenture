@@ -39,11 +39,23 @@ aside{
             align-self: flex-start;
             padding: 20px 30px 15px;
 
+            // .protest-strike-regular, .protest-strike-regular span{
+            //     line-height: 20px;
+            // }
+
+            // .fa-location-dot{
+            //     font-size: 2rem;
+            // }
+
             .logo_creer_big_test{
+                // font-size: 2rem;
                 span{
                     color: $color_2;
                 }
             }
+            // .logo_creer_big_subtest{
+            //     font-size: 1rem;
+            // }
 
             // img{
             //     // border: solid 1px red;
@@ -55,7 +67,7 @@ aside{
         nav{
             // border: solid 1px red;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 25px;
             padding: 15px 25px;
             ul{
                 // border: solid 1px red;
@@ -99,7 +111,7 @@ aside{
         .btn_logout{
             // border: solid 1px blue;
             position: absolute;
-                bottom: 20px;
+                bottom: 30px;
             width: 100%;
             padding: 0 25px;
             display: flex;

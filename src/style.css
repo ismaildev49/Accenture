@@ -122,12 +122,6 @@ button {
   font-size: 2rem;
   color: goldenrod;
 }
-@media screen and (min-width: 768px) {
-  .logo_creer .fa-location-dot {
-    left: 44%;
-    font-size: 2.2rem;
-  }
-}
 .logo_creer .protest-strike-regular, .logo_creer .protest-strike-regular span {
   font-family: "Protest Strike", sans-serif;
   font-weight: 400;
@@ -137,18 +131,8 @@ button {
   line-height: 20px;
   position: relative;
 }
-@media screen and (min-width: 768px) {
-  .logo_creer .protest-strike-regular, .logo_creer .protest-strike-regular span {
-    line-height: 24px;
-  }
-}
 .logo_creer .logo_creer_big_test {
   font-size: 2rem;
-}
-@media screen and (min-width: 768px) {
-  .logo_creer .logo_creer_big_test {
-    font-size: 2.5rem;
-  }
 }
 .logo_creer .logo_creer_big_test span {
   color: #1c2434;
@@ -157,11 +141,6 @@ button {
   font-size: 1rem;
   padding: 0 2px;
   color: goldenrod;
-}
-@media screen and (min-width: 768px) {
-  .logo_creer .logo_creer_big_subtest {
-    font-size: 1.2rem;
-  }
 }
 
 .header {
@@ -537,7 +516,7 @@ aside .slideBar .logo .logo_creer_big_test span {
 }
 aside .slideBar nav {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 25px;
   padding: 15px 25px;
 }
 aside .slideBar nav ul {
@@ -572,7 +551,7 @@ aside .slideBar nav ul li a i {
 }
 aside .slideBar .btn_logout {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   width: 100%;
   padding: 0 25px;
   display: flex;
