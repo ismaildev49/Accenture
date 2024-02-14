@@ -244,7 +244,7 @@ button {
 }
 
 .login-body {
-  background-color: white;
+  background-color: #cfcaff;
   overflow: hidden;
 }
 .login-body .container {
@@ -259,6 +259,9 @@ button {
   position: relative;
   height: 90vh;
   width: 360px;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0px 0px 24px rgba(92, 86, 150, 0.1921568627);
 }
 
 .screen__content {
@@ -320,6 +323,7 @@ button {
 }
 
 .login {
+  border-radius: 25px;
   width: 320px;
   padding: 30px;
   padding-top: 120px;
@@ -491,7 +495,7 @@ header .header_content .header_content_profil .photo_profil.click_none {
 aside {
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 10000;
   height: 100vh;
   width: 280px;
   background-color: white;
@@ -839,8 +843,8 @@ aside .slideBar .btn_logout a:hover {
 .calendrier .modal {
   display: none;
   justify-content: center;
-  /* align-items: center; */
-  background-color: #f1f5f9;
+  background-color: white;
+  padding: 100px 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -857,21 +861,53 @@ aside .slideBar .btn_logout a:hover {
 .calendrier .modal form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   width: 300px;
   background-color: white;
-  padding: 20px;
   border-radius: 20px;
   height: -moz-fit-content;
   height: fit-content;
 }
+.calendrier .modal form .bloc_inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
 .calendrier .modal form input {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
+  display: none;
+}
+.calendrier .modal form input:checked + .label_worked {
+  background-color: #1c2434;
+  color: goldenrod;
+}
+.calendrier .modal form .label_worked {
+  cursor: pointer;
+  display: flex;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  width: 100%;
 }
 .calendrier .modal form .adressError, .calendrier .modal form .workedError {
   color: red;
   font-size: 14px;
+}
+.calendrier .modal form select {
+  padding: 10px 0;
+  cursor: pointer;
+}
+.calendrier .modal form .btn {
+  padding: 10px 0;
+  background-color: #1c2434;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.calendrier .modal form .btn:hover {
+  background-color: #f1f5f9;
+  color: #1c2434;
 }
 
 .didntWork {

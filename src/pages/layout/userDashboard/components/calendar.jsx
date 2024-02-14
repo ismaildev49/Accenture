@@ -20,32 +20,19 @@ export default function Calendar() {
   const [workedError, setWorkedError] = useState("");
   const [adressError, setAdressError] = useState("");
   const [dates, setDates] = useState([]);
-  const [showEligibility, setShowEligibility] = useState(null);
+  const [showEligibility, setShowEligibility] = useState(false);
   
-  //
-  //infosUser.eligible
-  //
-
 
   const [accessSelectedAdress, setAccessSelectedAdress] = useState(true);
   const [isWorkedOrNot, setIsWorkedOrNot] = useState(true);
 
   useEffect(() => {
-    if (showEligibility === null) {
-      setShowEligibility(
-        database.getDocument(
-          import.meta.env.VITE_APP_DB_ID,
-          import.meta.env.VITE_APP_USER_COLLECTION_ID,
-          infosUser.$id
-        ).then((response) => {
-          console.log("response :", response);
-          setShowEligibility(() => response.eligible);
-        })
-      );
-    }
+    // if (showEligibility === undefined) {
+    //   showEligibilityFnc();
+    // }
     getDates();
     // console.log(" infosUser ------------> " + JSON.stringify(infosUser));
-  }, [showEligibility]);
+  }, []);
 
   useEffect(() => {
     if (dates.length > 0) {
@@ -151,6 +138,7 @@ export default function Calendar() {
 
     console.log("is eligible is :" + adresseTop.eligible);
     console.log("adresseTop : ", adresseTop);
+    setShowEligibility(adresseTop.eligible);
     return adresseTop.eligible;
 }
   
@@ -247,7 +235,7 @@ export default function Calendar() {
               .then((response) => {
                 console.log("response :", response);
                 alert("Data sent");
-                setShowEligibility(null);
+                // setShowEligibility();
                 window.location.reload();
               });
           } catch (error) {
@@ -330,10 +318,69 @@ export default function Calendar() {
             document.querySelector(".modal").style.display = "none";
           }}
         ></i>
-        <form onSubmit={handleFormSubmit}>
+        <form className="modal_calendrier_case_form_content" onSubmit={handleFormSubmit}>
           <h3>{date}</h3>
-          <br />
-          <label>
+          <label>Did you work on {date} ?</label>
+          <div className="workedError">{workedError}</div>
+
+          <div className="bloc_inputs">
+          <input  
+            id="worked_yes"
+            type="radio" 
+            name="worked"
+            placeholder="travaillé?"
+            value={"true"}
+            onChange={handleWorkedChange} />
+            <label htmlFor="worked_yes" className="label_worked">
+              yes</label>
+
+            <input 
+              id="worked_no"
+              type="radio" 
+              name="worked"
+              placeholder="travaillé?"
+              value={"false"}
+              onChange={handleWorkedChange} />
+            <label htmlFor="worked_no" className="label_worked">
+              no</label>
+          </div>
+
+
+          <label>Where did you work on {date} ?</label>
+          <div className="adressError">{adressError}</div>
+
+          <select
+              disabled={accessSelectedAdress}
+              name="adress"
+              id="adress"
+              defaultValue={""}
+              onChange={handleSelectedAdress}>
+              <option></option>
+              <option value={JSON.stringify(infosUser.homeAdress)}>Home</option>
+
+              {adresses.map((adress) => {
+                return (
+                  <option
+                    key={adress.$id}
+                    className={adress.geolocation}
+                    value={JSON.stringify(adress)}
+                  >
+                    {adress.clientName}
+                  </option>
+                );
+              })}
+            </select>
+
+            <button className="btn">Send</button>
+
+
+
+
+
+
+
+          {/* <br /> */}
+          {/* <label>
             Did you work on {date} ?
             <div className="workedError">{workedError}</div>
             <br />
@@ -360,9 +407,9 @@ export default function Calendar() {
             </label>
           </label>
           <br />
-          <br />
+          <br /> */}
 
-          <label>
+          {/* <label>
             Where did you work on {date} ?
             <div className="adressError">{adressError}</div>
             <br />
@@ -390,17 +437,17 @@ export default function Calendar() {
                 );
               })}
             </select>
-          </label>
+          </label> */}
 
-          <br />
-          <br />
-          <button className="btn">Send</button>
+          {/* <br />
+          <br /> */}
+          {/* <button className="btn">Send</button> */}
         </form>
       </div>
 
       <div className="calendrier_content">
         <div className="eligible">
-          {showEligibility==true ? (
+          {showEligibility ? (
             <p style={{ color: "green" }}>You are eligible for this month</p>
           ) : (
             <p style={{ color: "red" }}>You are not eligible for this month</p>
