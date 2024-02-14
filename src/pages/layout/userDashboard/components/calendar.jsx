@@ -20,14 +20,32 @@ export default function Calendar() {
   const [workedError, setWorkedError] = useState("");
   const [adressError, setAdressError] = useState("");
   const [dates, setDates] = useState([]);
+  const [showEligibility, setShowEligibility] = useState(null);
+  
+  //
+  //infosUser.eligible
+  //
+
 
   const [accessSelectedAdress, setAccessSelectedAdress] = useState(true);
   const [isWorkedOrNot, setIsWorkedOrNot] = useState(true);
 
   useEffect(() => {
+    if (showEligibility === null) {
+      setShowEligibility(
+        database.getDocument(
+          import.meta.env.VITE_APP_DB_ID,
+          import.meta.env.VITE_APP_USER_COLLECTION_ID,
+          infosUser.$id
+        ).then((response) => {
+          console.log("response :", response);
+          setShowEligibility(() => response.eligible);
+        })
+      );
+    }
     getDates();
     // console.log(" infosUser ------------> " + JSON.stringify(infosUser));
-  }, []);
+  }, [showEligibility]);
 
   useEffect(() => {
     if (dates.length > 0) {
@@ -67,31 +85,76 @@ export default function Calendar() {
       console.log("error while fetching adresses from db :", error);
     }
   };
-  function isEligible(array) {
+  /* function isEligible(array) {
     console.log("arrayyy", array);
 
     //1 Test si il faut JSON.parse etc...
+    console.log("IS ELIGIBLE ???");
     let adresseTop;
     let count = 0;
     let top = 0;
     let test;
+    let flag=false;
     for (let i = 0; i < array.length; i++) {
       count = 0;
       test = array[i];
-      for (let j = i; j < array.length; j++) {
-        if (test.eligible !== null && array[i] !== null) {
-          if (array[j].eligible === true && test.clientAdress === array[j].clientAdress) {
+      for (let j = 0; j < array.length; j++) {
+          if (array[j].clientAdress === test.clientAdress ) {
             count++;
           }
-        }
       }
+      console.log(count , test.clientAdress);
       if (count > top) {
         top = count;
         adresseTop = test;
+        flag=adresseTop.eligible;
+      }else if (count === top){
+        if(!flag){
+          adresseTop = test;
+          top=count;
+          flag=true;
+        }
       }
     }
-    return test.eligible;
-  }
+    console.log("is eligible is :"+adresseTop.eligible );
+    console.log("adresseTop : ", adresseTop);
+    return adresseTop.eligible;
+  } */
+
+  function isEligible(array) {
+    console.log("arrayyy", array);
+
+    let adresseTop;
+    let count = 0;
+    let top = 0;
+    let test;
+    let flag = false;
+
+    for (let i = 0; i < array.length; i++) {
+        count = 0;
+        test = array[i];
+        
+        for (let j = 0; j < array.length; j++) {
+            if (array[j].clientAdress === test.clientAdress) {
+                count++;
+            }
+        }
+        
+        console.log(count, test.clientAdress);
+
+        if (count > top || (count === top && !flag)) {
+            top = count;
+            adresseTop = test;
+            flag = adresseTop.eligible;
+        }
+    }
+
+    console.log("is eligible is :" + adresseTop.eligible);
+    console.log("adresseTop : ", adresseTop);
+    return adresseTop.eligible;
+}
+  
+
   const getDates = async () => {
     try {
       const dates = await database.listDocuments(
@@ -158,6 +221,7 @@ export default function Calendar() {
         window.location.reload();
       }
     }
+    
 
     // verification if all fields are filled
     if (!selectedAdress || !worked) {
@@ -183,6 +247,7 @@ export default function Calendar() {
               .then((response) => {
                 console.log("response :", response);
                 alert("Data sent");
+                setShowEligibility(null);
                 window.location.reload();
               });
           } catch (error) {
@@ -335,7 +400,7 @@ export default function Calendar() {
 
       <div className="calendrier_content">
         <div className="eligible">
-          {infosUser.eligible ? (
+          {showEligibility==true ? (
             <p style={{ color: "green" }}>You are eligible for this month</p>
           ) : (
             <p style={{ color: "red" }}>You are not eligible for this month</p>
