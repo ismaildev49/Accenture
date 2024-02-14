@@ -56,6 +56,10 @@
                 border: 1px solid #ccc;
                 font-size: 18px;
                 width: 100%;
+                &:hover{
+                    background-color: $_bg_color_3;
+                    color: goldenrod;
+                }
             }
             .adressError, .workedError {
                 color: red;

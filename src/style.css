@@ -888,6 +888,10 @@ aside .slideBar .btn_logout a:hover {
   font-size: 18px;
   width: 100%;
 }
+.calendrier .modal form .label_worked:hover {
+  background-color: #1c2434;
+  color: goldenrod;
+}
 .calendrier .modal form .adressError, .calendrier .modal form .workedError {
   color: red;
   font-size: 14px;
