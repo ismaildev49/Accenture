@@ -42,7 +42,7 @@ export default function SideBar(props) {
                 </li>
 
                 <li onClick={handleClick}>
-                    <a onClick={() => handleClickPage("addresse")}>
+                    <a onClick={() => handleClickPage("address")}>
                     <i className="fa-solid fa-gears"></i> Modify address
                     </a>
                 </li>
