@@ -31,10 +31,15 @@
             width: 100%;
             background-color: $_bg_color_1;
             text-align: left;
-            padding: 20px 10px 20px 32px;
+            padding: 10px 5px 10px 10px;
             margin-right: 3px;
             display: flex;
             align-items: center;
+            font-size: 16px;
+            @include _md{
+                padding: 20px 10px 20px 32px;
+                font-size: 20px;
+            }
         }
 
         tr{
@@ -64,23 +69,27 @@
         thead{
             width: 100%;
             color: $_text_color_3;
-            font-size: 18px;
+            // font-size: 18px;
             font-weight: 400;
             letter-spacing: 0.5px;
             transition: 300ms;
+            // @include _md{
+            //     font-size: 22px;
+            // }
         }
 
         tbody{
             width: 100%;
+            // font-size: 16px;
 
             td{
                 @include _md{
                     flex: 3;
                 }
-                font-size: 16px;
-                @include _md{
-                    font-size: 20px;
-                }
+                
+                // @include _md{
+                //     font-size: 20px;
+                // }
             }
 
             td.btn_delete_adress{

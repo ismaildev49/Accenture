@@ -612,10 +612,17 @@ aside .slideBar .btn_logout a:hover {
   width: 100%;
   background-color: white;
   text-align: left;
-  padding: 20px 10px 20px 32px;
+  padding: 10px 5px 10px 10px;
   margin-right: 3px;
   display: flex;
   align-items: center;
+  font-size: 16px;
+}
+@media screen and (min-width: 768px) {
+  .list_users table th, .list_users table td, .list_adresses table th, .list_adresses table td {
+    padding: 20px 10px 20px 32px;
+    font-size: 20px;
+  }
 }
 .list_users table tr, .list_adresses table tr {
   margin: 0 0 2px 0;
@@ -641,7 +648,6 @@ aside .slideBar .btn_logout a:hover {
 .list_users table thead, .list_adresses table thead {
   width: 100%;
   color: #1c2434;
-  font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.5px;
   transition: 300ms;
@@ -649,17 +655,9 @@ aside .slideBar .btn_logout a:hover {
 .list_users table tbody, .list_adresses table tbody {
   width: 100%;
 }
-.list_users table tbody td, .list_adresses table tbody td {
-  font-size: 16px;
-}
 @media screen and (min-width: 768px) {
   .list_users table tbody td, .list_adresses table tbody td {
     flex: 3;
-  }
-}
-@media screen and (min-width: 768px) {
-  .list_users table tbody td, .list_adresses table tbody td {
-    font-size: 20px;
   }
 }
 .list_users table tbody td.btn_delete_adress, .list_adresses table tbody td.btn_delete_adress {

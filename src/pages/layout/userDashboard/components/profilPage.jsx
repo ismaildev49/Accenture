@@ -1,9 +1,27 @@
 import { InfosUsersSession } from "../../../dashboard/Dashboard";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { database } from "../../../../appwrite/config";
 
 
 export default function ProfilPage() {
     const infosUser = useContext(InfosUsersSession);
+    const [updateInfosUser, setUpdateInfosUser] = useState();
+
+    const getInfosUser = async () => {
+        try {
+            const response = await database.getDocument(
+                import.meta.env.VITE_APP_DB_ID,
+                import.meta.env.VITE_APP_USER_COLLECTION_ID,
+                infosUser.$id);
+            setUpdateInfosUser(response.eligible);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getInfosUser()
+    }, [updateInfosUser]);
 
     return (
     <div className="ProfilPage">
@@ -18,7 +36,7 @@ export default function ProfilPage() {
                     </div>
                     <div className="ProfilPage_content_details_item">
                         <p>Employee</p> <span className='line'></span> 
-                        {infosUser.eligible ? <p style={{color: 'green'}}>Eligible for the FMB</p> : 
+                        {updateInfosUser ? <p style={{color: 'green'}}>Eligible for the FMB</p> : 
                         <p style={{color: 'red'}}>Not eligible for the FMB</p>}
                     </div>
                     <div className="ProfilPage_content_details_item">

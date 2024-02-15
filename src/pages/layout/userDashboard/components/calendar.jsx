@@ -40,8 +40,19 @@ export default function Calendar() {
       console.log(
         "isEligible(dates) :",
         isEligible(dates.filter((date) => date.worked === true))
-      );
+      )
       updateEligibility();
+    }else{
+      // isEligible( false)
+      console.log("oui c false");
+      database.updateDocument(
+        import.meta.env.VITE_APP_DB_ID,
+        import.meta.env.VITE_APP_USER_COLLECTION_ID,
+        infosUser.$id,
+        {
+          eligible: false,
+        }
+      );
     }
 
     // console.log(JSON.parse(isEligible(dates)));
@@ -110,12 +121,16 @@ export default function Calendar() {
 
   function isEligible(array) {
     console.log("arrayyy", array);
-
+    
     let adresseTop;
     let count = 0;
     let top = 0;
     let test;
     let flag = false;
+    
+    // if (array.length === 0) {
+    //   return false;
+    // }
 
     for (let i = 0; i < array.length; i++) {
         count = 0;
