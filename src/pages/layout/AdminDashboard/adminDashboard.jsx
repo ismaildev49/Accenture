@@ -20,7 +20,7 @@ export default function AdminDashboard() {
     const route = [
         {path: "employees", composant: <Employees />},
         // {path: "profil", composant: <ProfilPage />},
-        {path: "adresses", composant: <Adresses />}
+        {path: "addresses", composant: <Adresses />}
     ]
     const changeComposant = (composant="") => {
         if (composant == "") {

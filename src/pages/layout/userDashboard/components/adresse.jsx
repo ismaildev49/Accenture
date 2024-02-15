@@ -69,7 +69,7 @@ export default function Adresse(props) {
             type="text"
             value={adresse}
             onChange={handleAdresseChange}
-            placeholder="Update your adress"
+            placeholder="Update your address"
         />
         <button type="submit">Update</button>
         </form>

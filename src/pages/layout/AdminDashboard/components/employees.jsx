@@ -198,7 +198,7 @@ function Modal(props) {
                             {props.user.eligible ? <p style={{color: 'green'}}>Eligible</p> : <p style={{color: 'red'}}>Not eligible</p>}  
                         </div>
                         <div className="ProfilPage_content_details_item">
-                            <p><span>Adress: &nbsp; </span>{props.user.homeAdress}</p>
+                            <p><span>Address: &nbsp; </span>{props.user.homeAdress}</p>
                         </div>
                         <div className="ProfilPage_content_details_item">
                             <p><span>Email: &nbsp; </span>{props.user.email}</p>
@@ -214,10 +214,10 @@ function Modal(props) {
                             {
                                 showHistoriqueTitre ? 
                                 <div className="historique_item historique_item_titre">
-                                    <p>Client :</p>
-                                    <p>Client adress :</p>
-                                    <p>Date :</p>
-                                    <p>FMB :</p>
+                                    <p>Client:</p>
+                                    <p>Client address:</p>
+                                    <p>Date:</p>
+                                    <p>FMB:</p>
                                 </div> : ""
                             }
                             {showHistorique}

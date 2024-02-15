@@ -21,7 +21,7 @@ export default function UserDashboard() {
     { path: "profil", composant: <ProfilPage /> },
     { path: "calendar", composant: <Calendar /> },
     {
-      path: "adresse",
+      path: "addresse",
       composant: <Adresse changeComposant={changeComposant} />,
     },
     { path: "history", composant: <History /> },

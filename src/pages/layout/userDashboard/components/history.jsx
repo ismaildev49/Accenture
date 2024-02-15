@@ -63,10 +63,10 @@ export default function History() {
     <div className="historique">
         <div className="historique_items">
             <div className="historique_item historique_item_titre">
-                <p>Client :</p>
-                <p>Client adress :</p>
-                <p>Date :</p>
-                <p>FMB :</p>
+                <p>Client:</p>
+                <p>Client address:</p>
+                <p>Date:</p>
+                <p>FMB:</p>
             </div>
             {listHistorique}
         </div>

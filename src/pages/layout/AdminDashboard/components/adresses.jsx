@@ -102,12 +102,12 @@ export default function Adresses() {
         />
       </div>
 
-      <button className="add_new_adress" onClick={handleClickModal}>Add a new adress</button>
+      <button className="add_new_adress" onClick={handleClickModal}>Add a new address</button>
 
       <table>
         <thead>
           <tr>
-            <th>Adress</th>
+            <th>Address</th>
             <th>Client name</th>
             <th>Delete</th>
           </tr>
@@ -194,13 +194,13 @@ function ModalAdresse(props) {
           <div className="ProfilPage_content">
             <div className="ProfilPage_content_details">
               <div className="ProfilPage_content_details_item">
-                <h2>Add a new adress</h2>
+                <h2>Add a new address</h2>
               </div>
               <div className="ProfilPage_content_details_item">
                 <input
                   type="text"
                   name="adresse"
-                  placeholder="Adresse"
+                  placeholder="Address"
                   value={newAdress}
                   onChange={handleChangeAdress}
                 />
