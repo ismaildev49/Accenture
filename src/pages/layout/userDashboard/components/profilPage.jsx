@@ -21,7 +21,7 @@ export default function ProfilPage() {
 
     useEffect(() => {
         getInfosUser()
-    }, [updateInfosUser]);
+    }, [updateInfosUser, infosUser]);
 
     return (
     <div className="ProfilPage">

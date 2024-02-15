@@ -27,24 +27,13 @@ export default function Calendar() {
   const [isWorkedOrNot, setIsWorkedOrNot] = useState(true);
 
   useEffect(() => {
-    // if (showEligibility === undefined) {
-    //   showEligibilityFnc();
-    // }
     getDates();
-    // console.log(" infosUser ------------> " + JSON.stringify(infosUser));
   }, []);
 
   useEffect(() => {
     if (dates.length > 0) {
-      console.log("dates :", dates);
-      console.log(
-        "isEligible(dates) :",
-        isEligible(dates.filter((date) => date.worked === true))
-      )
       updateEligibility();
     }else{
-      // isEligible( false)
-      console.log("oui c false");
       database.updateDocument(
         import.meta.env.VITE_APP_DB_ID,
         import.meta.env.VITE_APP_USER_COLLECTION_ID,
@@ -77,47 +66,13 @@ export default function Calendar() {
         import.meta.env.VITE_APP_DB_ID,
         import.meta.env.VITE_APP_ADRESSES_COLLECTION_ID
       );
-      console.log("result :", adress);
       setAdresses(() => adress.documents);
     } catch (error) {
       console.log("error while fetching adresses from db :", error);
     }
   };
-  /* function isEligible(array) {
-    console.log("arrayyy", array);
 
-    //1 Test si il faut JSON.parse etc...
-    console.log("IS ELIGIBLE ???");
-    let adresseTop;
-    let count = 0;
-    let top = 0;
-    let test;
-    let flag=false;
-    for (let i = 0; i < array.length; i++) {
-      count = 0;
-      test = array[i];
-      for (let j = 0; j < array.length; j++) {
-          if (array[j].clientAdress === test.clientAdress ) {
-            count++;
-          }
-      }
-      console.log(count , test.clientAdress);
-      if (count > top) {
-        top = count;
-        adresseTop = test;
-        flag=adresseTop.eligible;
-      }else if (count === top){
-        if(!flag){
-          adresseTop = test;
-          top=count;
-          flag=true;
-        }
-      }
-    }
-    console.log("is eligible is :"+adresseTop.eligible );
-    console.log("adresseTop : ", adresseTop);
-    return adresseTop.eligible;
-  } */
+  
 
   function isEligible(array) {
     console.log("arrayyy", array);
@@ -128,9 +83,6 @@ export default function Calendar() {
     let test;
     let flag = false;
     
-    // if (array.length === 0) {
-    //   return false;
-    // }
 
     for (let i = 0; i < array.length; i++) {
         count = 0;
@@ -141,8 +93,6 @@ export default function Calendar() {
                 count++;
             }
         }
-        
-        console.log(count, test.clientAdress);
 
         if (count > top || (count === top && !flag)) {
             top = count;
@@ -151,10 +101,13 @@ export default function Calendar() {
         }
     }
 
-    console.log("is eligible is :" + adresseTop.eligible);
-    console.log("adresseTop : ", adresseTop);
-    setShowEligibility(adresseTop.eligible);
-    return adresseTop.eligible;
+    
+    if (adresseTop) {
+      setShowEligibility(adresseTop.eligible);
+      return adresseTop.eligible;
+    }
+    return false;
+    
 }
   
 
@@ -165,7 +118,7 @@ export default function Calendar() {
         import.meta.env.VITE_APP_DATES_COLLECTION_ID,
         [Query.equal("user", infosUser.$id), Query.limit(100)]
       );
-      console.log("result :", dates.documents);
+      
       setDates(() => dates.documents);
     } catch (error) {
       console.log("error while fetching dates from db :", error);
@@ -173,10 +126,7 @@ export default function Calendar() {
   };
 
   const handleClickCaseCalendrier = (infos) => {
-    console.log("infos user : ", infosUser);
     getAdresses();
-    console.log(infos);
-    console.log("type of date : ", typeof infos);
     setDate(() => infos);
     document.querySelector(".modal").style.display = "flex";
   };
@@ -184,8 +134,6 @@ export default function Calendar() {
     const boolValue = e.target.value === "true";
 
     setWorked(() => boolValue);
-
-    console.log("e.target.value", e.target.value);
 
     if (e.target.value === "true") {
       setIsWorkedOrNot(false);
@@ -196,7 +144,6 @@ export default function Calendar() {
     }
 
     setWorkedError("");
-    console.log("boolvalue", boolValue);
     // If no radio button is selected (neither "true" nor "false"), display an error
     if (boolValue !== true && boolValue !== false) {
       setWorkedError("Please select if you worked or not");
@@ -204,17 +151,12 @@ export default function Calendar() {
   };
   const handleSelectedAdress = (e) => {
     const selectedAddressObject = JSON.parse(e.target.value);
-    console.log("Selected address object:", selectedAddressObject);
     setSelectedAdress(() => selectedAddressObject);
   };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    dates.forEach((element) => {
-      console.log("split from database date", element.date.split("T")[0], date);
-      console.log("user verification :", element.user, infosUser.$id);
-    });
-
+    
     for (let i = 0; i < dates.length; i++) {
       if (
         dates[i].date.split("T")[0] === date &&
@@ -250,7 +192,6 @@ export default function Calendar() {
               .then((response) => {
                 console.log("response :", response);
                 alert("Data sent");
-                // setShowEligibility();
                 window.location.reload();
               });
           } catch (error) {
@@ -266,13 +207,10 @@ export default function Calendar() {
       }
     } else {
       // If all fields are filled, calculate the distance between the user's home and the selected adress to know if the user is eligible or not.
-      console.log("home adress :", infosUser.homeAdress);
-      console.log("selected adress :", selectedAdress);
       const home = {
         lat: infosUser.geolocHome.split(",")[0],
         lng: infosUser.geolocHome.split(",")[1],
       };
-      console.log("home :", home);
 
       //if the user selected his home adress, the distance is 0
       let distance;
@@ -284,11 +222,8 @@ export default function Calendar() {
           lat: selectedAdress.geolocation.split(",")[0],
           lng: selectedAdress.geolocation.split(",")[1],
         };
-        console.log("client geoloc ", client.lat, client.lng);
+        
         distance = haversine(home.lat, home.lng, client.lat, client.lng);
-        console.log("distance :", distance);
-
-        console.log("home geoloc", home);
       }
       try {
         await database
@@ -308,7 +243,6 @@ export default function Calendar() {
             }
           )
           .then((response) => {
-            console.log("response :", response);
             alert("Data sent");
             window.location.reload();
           });
@@ -387,76 +321,6 @@ export default function Calendar() {
             </select>
 
             <button className="btn">Send</button>
-
-
-
-
-
-
-
-          {/* <br /> */}
-          {/* <label>
-            Did you work on {date} ?
-            <div className="workedError">{workedError}</div>
-            <br />
-            <label>
-              <input
-                type="radio"
-                name="worked"
-                placeholder="travaillé?"
-                value={"true"}
-                onChange={handleWorkedChange}
-              />
-              Yes
-            </label>
-            <br />
-            <label>
-              <input
-                type="radio"
-                name="worked"
-                placeholder="travaillé?"
-                value={"false"}
-                onChange={handleWorkedChange}
-              />
-              No
-            </label>
-          </label>
-          <br />
-          <br /> */}
-
-          {/* <label>
-            Where did you work on {date} ?
-            <div className="adressError">{adressError}</div>
-            <br />
-            <select
-              disabled={accessSelectedAdress}
-              name="adress"
-              id="adress"
-              defaultValue={""}
-              onChange={handleSelectedAdress}
-            >
-              <option></option>
-              <option value={JSON.stringify(infosUser.homeAdress)}>Home</option>
-
-              {adresses.map((adress) => {
-                // console.log("adress :", adress);
-
-                return (
-                  <option
-                    key={adress.$id}
-                    className={adress.geolocation}
-                    value={JSON.stringify(adress)}
-                  >
-                    {adress.clientName}
-                  </option>
-                );
-              })}
-            </select>
-          </label> */}
-
-          {/* <br />
-          <br /> */}
-          {/* <button className="btn">Send</button> */}
         </form>
       </div>
 
