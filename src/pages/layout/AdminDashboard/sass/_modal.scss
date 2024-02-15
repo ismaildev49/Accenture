@@ -80,16 +80,21 @@
         // border: solid 1px green;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         width: 100%;
-        max-width: 700px;
+        max-width: 900px;
         margin: auto;
         display: flex;
+        padding: 5px 0;
         p{
             // border: solid 1px green;
             margin: 2px 0;
             padding: 5px 10px;
-            font-size: 16px;
+            font-size: 14px;
             background-color: $_bg_color_1;
             width: 100%;
+
+            @include _md{
+                font-size: 16px;
+            }
 
             @include Dfx_JCc_AIc;
         }
@@ -100,11 +105,18 @@
     }
     .historique_item:nth-child(odd){
         p{
-                background-color: $_bg_color_2;
+                // background-color: $_bg_color_2;
                 // color: $_text_color_1;
         }
     }
+    .historique_item_titre{
+        background-color: $_bg_color_3;
+        color: $_text_color_1;
+    }
     .historique_item_titre p{
-        font-weight: 700;
+        background-color: $_bg_color_3;
+        color: $_text_color_1;
+        font-weight: 500;
+        letter-spacing: 1px;
     }
 }

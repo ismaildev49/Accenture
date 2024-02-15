@@ -791,25 +791,35 @@ aside .slideBar .btn_logout a:hover {
 .historique_items .historique_item {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 700px;
+  max-width: 900px;
   margin: auto;
   display: flex;
+  padding: 5px 0;
 }
 .historique_items .historique_item p {
   margin: 2px 0;
   padding: 5px 10px;
-  font-size: 16px;
+  font-size: 14px;
   background-color: white;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.historique_items .historique_item:nth-child(odd) p {
-  background-color: #f1f5f9;
+@media screen and (min-width: 768px) {
+  .historique_items .historique_item p {
+    font-size: 16px;
+  }
+}
+.historique_items .historique_item_titre {
+  background-color: #1c2434;
+  color: white;
 }
 .historique_items .historique_item_titre p {
-  font-weight: 700;
+  background-color: #1c2434;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
 .calendrier {

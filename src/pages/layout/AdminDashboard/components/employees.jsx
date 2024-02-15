@@ -151,6 +151,7 @@ function Modal(props) {
                         return (
                             <div key={index} className="historique_item">
                                 <p>{date.clientAdress}</p>
+                                <p>---</p>
                                 <p>{dateObj}</p>
                                 <p>---</p>
                             </div>
@@ -158,6 +159,7 @@ function Modal(props) {
                     }else{
                         return (
                             <div key={index} className="historique_item">
+                                <p>{date.clientName}</p>
                                 <p>{date.clientAdress}</p>
                                 <p>{dateObj}</p>
                                 {date.eligible ? <p style={{color: 'green'}}>eligible</p> : <p style={{color: 'red'}}>not eligible</p>}
@@ -212,7 +214,8 @@ function Modal(props) {
                             {
                                 showHistoriqueTitre ? 
                                 <div className="historique_item historique_item_titre">
-                                    <p>Adress client :</p>
+                                    <p>Client :</p>
+                                    <p>Client adress :</p>
                                     <p>Date :</p>
                                     <p>FMB :</p>
                                 </div> : ""

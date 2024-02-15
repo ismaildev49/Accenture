@@ -184,6 +184,7 @@ export default function Calendar() {
                 {
                   date: date,
                   clientAdress:"didn't work",
+                  clientName: "didn't work",
                   worked: worked,
                   user: infosUser.$id,
                   eligible: false,
@@ -237,6 +238,10 @@ export default function Calendar() {
                 selectedAdress === infosUser.homeAdress
                   ? infosUser.homeAdress
                   : selectedAdress.fullAdress,
+              clientName:
+                selectedAdress === infosUser.homeAdress
+                  ? "Home"
+                  : selectedAdress.clientName,
               worked: worked,
               user: infosUser.$id,
               eligible: distance < 10 ? true : false,
@@ -350,7 +355,7 @@ export default function Calendar() {
               };
             } else {
               return {
-                title: date.clientAdress,
+                title: date.clientName,
                 date: date.date,
                 color: date.eligible ? "green" : "red",
               };
